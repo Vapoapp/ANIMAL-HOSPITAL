@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="theme-color" content="#f4f9f7" />
-<title>Animal Hospital Tycoon — SÉLUX 3 segundos</title>
+<title>Animal Hospital Tycoon — Novos Assistentes</title>
 
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800&display=swap');
@@ -2242,6 +2242,1683 @@
       }
     }
 
+
+    .patient-progression-hint {
+      padding: 10px 12px;
+      border-radius: 14px;
+      font-size: .76rem;
+      line-height: 1.4;
+      color: #53657a;
+      background: rgba(233,243,255,.72);
+      border: 1px solid rgba(83,132,190,.14);
+    }
+
+    /* Emergência de contenção: apenas CSS e texto, sem imagens pesadas ou violência gráfica */
+    .containment-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1600;
+      display: grid;
+      place-items: center;
+      padding: max(18px, env(safe-area-inset-top)) 18px max(18px, env(safe-area-inset-bottom));
+      background:
+        radial-gradient(circle at 50% 15%, rgba(255, 76, 76, .17), transparent 34%),
+        rgba(7, 13, 24, .92);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity .22s ease, visibility .22s ease;
+    }
+
+    .containment-overlay.show {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .containment-card {
+      position: relative;
+      width: min(92vw, 520px);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 24px;
+      background: linear-gradient(180deg, #182438, #0d1625);
+      box-shadow: 0 26px 90px rgba(0,0,0,.48);
+      color: #f7fbff;
+      text-align: center;
+    }
+
+    .containment-lights {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 8px;
+      overflow: hidden;
+    }
+
+    .containment-lights span:first-child {
+      background: #ff5d5d;
+      animation: emergencyPulse 1s ease-in-out infinite alternate;
+    }
+
+    .containment-lights span:last-child {
+      background: #72a8ff;
+      animation: emergencyPulse 1s ease-in-out .5s infinite alternate;
+    }
+
+    @keyframes emergencyPulse {
+      from { opacity: .28; }
+      to { opacity: 1; }
+    }
+
+    .containment-scene {
+      position: relative;
+      height: 180px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(92,127,173,.14), rgba(3,9,18,.56)),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.025) 0 1px, transparent 1px 34px);
+      border-bottom: 1px solid rgba(255,255,255,.09);
+    }
+
+    .containment-door {
+      position: absolute;
+      inset: 0;
+      transform: translateY(-104%);
+      background:
+        repeating-linear-gradient(
+          180deg,
+          #6f7f91 0 12px,
+          #48586a 12px 16px,
+          #7f8fa0 16px 28px
+        );
+      box-shadow: inset 0 -10px 0 #273545;
+      transition: transform .52s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .containment-overlay.show .containment-door {
+      transform: translateY(0);
+    }
+
+    .containment-door::after {
+      content: "ÁREA ISOLADA";
+      position: absolute;
+      left: 50%;
+      bottom: 30px;
+      transform: translateX(-50%);
+      padding: 8px 13px;
+      border: 2px solid rgba(255,255,255,.76);
+      border-radius: 8px;
+      font-weight: 900;
+      letter-spacing: .11em;
+      font-size: .74rem;
+      color: #fff;
+      background: rgba(11,20,31,.62);
+      white-space: nowrap;
+    }
+
+    .containment-vehicle {
+      position: absolute;
+      left: -130px;
+      bottom: 13px;
+      width: 112px;
+      height: 53px;
+      border-radius: 17px 23px 11px 11px;
+      background: linear-gradient(180deg, #edf4fa, #aebdca);
+      border: 3px solid #6a7a88;
+      box-shadow: 0 7px 18px rgba(0,0,0,.3);
+      opacity: 0;
+    }
+
+    .containment-vehicle::before {
+      content: "CONTENÇÃO";
+      position: absolute;
+      inset: 15px 6px auto;
+      color: #293a49;
+      font-size: .55rem;
+      font-weight: 950;
+      letter-spacing: .06em;
+    }
+
+    .containment-vehicle::after {
+      content: "";
+      position: absolute;
+      left: 19px;
+      right: 19px;
+      bottom: -10px;
+      height: 19px;
+      background:
+        radial-gradient(circle at 10px 9px, #18222d 0 8px, transparent 9px),
+        radial-gradient(circle at calc(100% - 10px) 9px, #18222d 0 8px, transparent 9px);
+    }
+
+    .containment-overlay.vehicle-arriving .containment-vehicle {
+      opacity: 1;
+      animation: containmentArrival .95s ease-out forwards;
+    }
+
+    @keyframes containmentArrival {
+      from { left: -130px; }
+      to { left: calc(50% - 56px); }
+    }
+
+    .containment-copy {
+      padding: 22px 22px 24px;
+    }
+
+    .containment-kicker {
+      margin: 0 0 8px;
+      color: #ff8b8b;
+      font-size: .75rem;
+      font-weight: 950;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .containment-copy h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.35rem, 5vw, 2rem);
+    }
+
+    .containment-copy p {
+      margin: 0;
+      color: #c8d4e2;
+      line-height: 1.55;
+    }
+
+    .containment-countdown {
+      display: inline-grid;
+      place-items: center;
+      min-width: 74px;
+      min-height: 74px;
+      margin: 18px auto 12px;
+      border-radius: 50%;
+      border: 3px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.22);
+      font-size: 2rem;
+      font-weight: 950;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .containment-status {
+      min-height: 22px;
+      font-size: .84rem;
+      font-weight: 800;
+      color: #9ed0ff;
+    }
+
+    .containment-overlay.success .containment-kicker,
+    .containment-overlay.false-alarm .containment-kicker {
+      color: #93e6bc;
+    }
+
+    .containment-overlay.success .containment-countdown,
+    .containment-overlay.false-alarm .containment-countdown {
+      border-color: rgba(116, 228, 169, .4);
+      color: #9ff0c4;
+    }
+
+    .security-failure-modal {
+      z-index: 1700;
+    }
+
+    .security-failure-modal .modal-card {
+      border: 1px solid rgba(255, 105, 105, .28);
+      box-shadow: 0 28px 100px rgba(0,0,0,.58);
+    }
+
+    .security-failure-modal .modal-icon {
+      color: #ff7474;
+    }
+
+    .security-failure-note {
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(255, 93, 93, .08);
+      color: #704040;
+      font-size: .84rem;
+      line-height: 1.45;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .containment-lights span,
+      .containment-overlay.vehicle-arriving .containment-vehicle {
+        animation: none !important;
+      }
+
+      .containment-door {
+        transition: none;
+      }
+
+      .containment-overlay.vehicle-arriving .containment-vehicle {
+        left: calc(50% - 56px);
+        opacity: 1;
+      }
+    }
+
+
+    /* Tela principal premium */
+    .premium-home {
+      position: relative;
+      overflow: hidden;
+      min-height: 100dvh;
+      padding: max(24px, env(safe-area-inset-top)) 18px max(24px, env(safe-area-inset-bottom));
+      background:
+        radial-gradient(circle at 18% 12%, rgba(110, 208, 255, .34), transparent 28%),
+        radial-gradient(circle at 86% 18%, rgba(178, 124, 255, .28), transparent 30%),
+        linear-gradient(145deg, #dff5ff 0%, #e9e7ff 48%, #fff4dc 100%);
+    }
+
+    .home-ambient {
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(6px);
+      opacity: .62;
+      pointer-events: none;
+      animation: homeAmbientFloat 8s ease-in-out infinite alternate;
+    }
+
+    .home-ambient-one {
+      width: 220px;
+      height: 220px;
+      top: -80px;
+      right: -70px;
+      background: rgba(255, 223, 104, .42);
+    }
+
+    .home-ambient-two {
+      width: 180px;
+      height: 180px;
+      bottom: -55px;
+      left: -60px;
+      background: rgba(93, 214, 255, .36);
+      animation-delay: -3s;
+    }
+
+    @keyframes homeAmbientFloat {
+      from { transform: translate3d(0, 0, 0) scale(1); }
+      to { transform: translate3d(10px, 14px, 0) scale(1.08); }
+    }
+
+    .premium-menu-card {
+      position: relative;
+      z-index: 1;
+      width: min(94vw, 560px);
+      padding: 26px;
+      border-radius: 34px;
+      border: 1px solid rgba(255,255,255,.86);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.92), rgba(248,251,255,.79));
+      box-shadow:
+        0 28px 80px rgba(67, 81, 126, .22),
+        inset 0 1px 0 rgba(255,255,255,.98);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+    }
+
+    .home-topline {
+      display: flex;
+      align-items: center;
+      gap: 17px;
+      text-align: left;
+      margin-bottom: 22px;
+    }
+
+    .home-logo-mark {
+      position: relative;
+      display: grid;
+      place-items: center;
+      flex: 0 0 76px;
+      width: 76px;
+      height: 76px;
+      border-radius: 24px;
+      font-size: 2.1rem;
+      background:
+        linear-gradient(145deg, #6bc7ff, #7d84ff 55%, #b77aff);
+      box-shadow:
+        0 16px 34px rgba(82, 111, 255, .28),
+        inset 0 1px 0 rgba(255,255,255,.52);
+      color: #fff;
+      transform: rotate(-3deg);
+    }
+
+    .home-logo-mark span:last-child {
+      position: absolute;
+      top: 9px;
+      right: 10px;
+      font-size: .8rem;
+      animation: petCoinSparkle 1.7s ease-in-out infinite;
+    }
+
+    .home-brand-copy {
+      min-width: 0;
+    }
+
+    .home-brand-copy .menu-brand {
+      margin: 0 0 5px;
+      color: #6f77a4;
+      font-size: .68rem;
+      font-weight: 900;
+      letter-spacing: .16em;
+    }
+
+    .home-brand-copy h1 {
+      margin: 0;
+      color: #1f2a48;
+      font-size: clamp(1.75rem, 7vw, 2.65rem);
+      line-height: .98;
+      letter-spacing: -.05em;
+    }
+
+    .home-brand-copy p {
+      margin: 10px 0 0;
+      color: #68728e;
+      font-size: .92rem;
+      line-height: 1.45;
+    }
+
+    .home-dashboard {
+      display: grid;
+      grid-template-columns: 1.25fr .95fr;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .premium-wallet,
+    .premium-record {
+      min-width: 0;
+      margin: 0;
+      border: 1px solid rgba(255,255,255,.74);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.8);
+    }
+
+    .premium-wallet {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 16px;
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 88% 15%, rgba(255,255,255,.62), transparent 24%),
+        linear-gradient(145deg, #fff1ad, #ffd36b);
+      color: #5b4012;
+    }
+
+    .pet-coin-emblem {
+      position: relative;
+      display: grid;
+      place-items: center;
+      flex: 0 0 64px;
+      width: 64px;
+      height: 64px;
+      border: 5px solid rgba(255,255,255,.72);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 35% 30%, #fff7c8 0 12%, transparent 13%),
+        linear-gradient(145deg, #ffd35d, #f3a91c);
+      box-shadow:
+        0 10px 20px rgba(168, 104, 9, .22),
+        inset 0 -6px 10px rgba(152, 88, 0, .15);
+    }
+
+    .pet-coin-paw {
+      font-size: 1.8rem;
+      filter: drop-shadow(0 2px 1px rgba(255,255,255,.45));
+    }
+
+    .pet-coin-shine {
+      position: absolute;
+      top: -7px;
+      right: -5px;
+      color: #fff;
+      font-size: 1rem;
+      animation: petCoinSparkle 1.6s ease-in-out infinite;
+    }
+
+    @keyframes petCoinSparkle {
+      0%, 100% { opacity: .35; transform: scale(.8) rotate(0); }
+      50% { opacity: 1; transform: scale(1.18) rotate(20deg); }
+    }
+
+    .wallet-copy {
+      display: grid;
+      line-height: 1;
+      text-align: left;
+    }
+
+    .wallet-copy > span {
+      font-size: .72rem;
+      font-weight: 800;
+      opacity: .72;
+    }
+
+    .wallet-copy strong {
+      margin: 5px 0 4px;
+      font-size: clamp(1.65rem, 7vw, 2.3rem);
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -.04em;
+    }
+
+    .wallet-copy small {
+      font-size: .72rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      opacity: .78;
+    }
+
+    .premium-record {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px;
+      border-radius: 24px;
+      background: linear-gradient(145deg, #edf0ff, #dce5ff);
+      color: #354067;
+      text-align: left;
+    }
+
+    .record-icon {
+      display: grid;
+      place-items: center;
+      flex: 0 0 44px;
+      width: 44px;
+      height: 44px;
+      border-radius: 15px;
+      background: rgba(255,255,255,.7);
+      font-size: 1.45rem;
+    }
+
+    .premium-record span {
+      display: block;
+      font-size: .68rem;
+      line-height: 1.25;
+      opacity: .7;
+    }
+
+    .premium-record strong {
+      display: block;
+      margin-top: 5px;
+      font-size: 1rem;
+    }
+
+    .milestone-banner {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 16px;
+      padding: 13px 15px;
+      border: 1px solid rgba(120, 104, 208, .13);
+      border-radius: 20px;
+      background:
+        linear-gradient(135deg, rgba(233,227,255,.92), rgba(225,244,255,.92));
+      color: #4a4d78;
+      text-align: left;
+    }
+
+    .milestone-icon {
+      display: grid;
+      place-items: center;
+      flex: 0 0 42px;
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.72);
+      font-size: 1.25rem;
+    }
+
+    .milestone-banner strong,
+    .milestone-banner span {
+      display: block;
+    }
+
+    .milestone-banner strong {
+      margin-bottom: 3px;
+      font-size: .86rem;
+    }
+
+    .milestone-banner span {
+      color: #71769a;
+      font-size: .73rem;
+      line-height: 1.35;
+    }
+
+    .premium-menu-actions {
+      display: grid;
+      gap: 11px;
+    }
+
+    .premium-play-button,
+    .premium-shop-button {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 14px;
+      width: 100%;
+      min-height: 70px;
+      padding: 13px 17px;
+      border: 0;
+      border-radius: 22px;
+      text-align: left;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .premium-play-button {
+      color: #fff;
+      background:
+        radial-gradient(circle at 90% 10%, rgba(255,255,255,.25), transparent 28%),
+        linear-gradient(135deg, #4ca8ff, #6d78ff 58%, #9a6cff);
+      box-shadow: 0 16px 32px rgba(88, 106, 238, .28);
+    }
+
+    .premium-shop-button {
+      color: #3a4168;
+      background: linear-gradient(135deg, #fff0b7, #ffd88a);
+      box-shadow: 0 12px 24px rgba(177, 126, 27, .16);
+    }
+
+    .premium-play-button:active,
+    .premium-shop-button:active {
+      transform: scale(.98);
+    }
+
+    .premium-menu-actions .button-icon {
+      display: grid;
+      place-items: center;
+      flex: 0 0 42px;
+      width: 42px;
+      height: 42px;
+      border-radius: 15px;
+      background: rgba(255,255,255,.21);
+      font-size: 1.12rem;
+    }
+
+    .premium-shop-button .button-icon {
+      background: rgba(255,255,255,.48);
+    }
+
+    .premium-menu-actions button > span:last-child {
+      display: grid;
+      gap: 3px;
+    }
+
+    .premium-menu-actions button strong {
+      font-size: 1rem;
+    }
+
+    .premium-menu-actions button small {
+      font-size: .72rem;
+      opacity: .76;
+    }
+
+    .premium-class-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 14px;
+      padding: 11px 14px;
+      border-radius: 16px;
+      background: rgba(236, 241, 250, .8);
+      color: #65708c;
+      font-size: .75rem;
+    }
+
+    .premium-class-summary strong {
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: #4e4f87;
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(57,65,107,.08);
+    }
+
+    /* Pet Moedas em loja e durante o jogo */
+    .premium-pet-chip {
+      display: inline-flex !important;
+      align-items: center;
+      gap: 9px;
+      min-height: 48px;
+      padding: 7px 12px 7px 7px !important;
+      border: 1px solid rgba(255,255,255,.76) !important;
+      border-radius: 17px !important;
+      color: #5b4012 !important;
+      background: linear-gradient(145deg, #fff3b8, #ffd263) !important;
+      box-shadow:
+        0 8px 20px rgba(157, 101, 8, .16),
+        inset 0 1px 0 rgba(255,255,255,.75);
+    }
+
+    .mini-pet-coin {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border: 3px solid rgba(255,255,255,.72);
+      border-radius: 50%;
+      background: linear-gradient(145deg, #ffd75e, #efa315);
+      box-shadow: inset 0 -3px 6px rgba(121,73,0,.14);
+      font-size: 1rem;
+    }
+
+    .pet-chip-copy {
+      display: grid;
+      gap: 1px;
+      line-height: 1;
+      text-align: left;
+    }
+
+    .pet-chip-copy small {
+      color: #806026;
+      font-size: .57rem;
+      font-weight: 900;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .pet-chip-copy strong {
+      color: #593b05;
+      font-size: 1rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    @media (max-width: 520px) {
+      .premium-menu-card {
+        padding: 20px 17px;
+        border-radius: 28px;
+      }
+
+      .home-topline {
+        align-items: flex-start;
+      }
+
+      .home-logo-mark {
+        flex-basis: 62px;
+        width: 62px;
+        height: 62px;
+        border-radius: 20px;
+        font-size: 1.7rem;
+      }
+
+      .home-dashboard {
+        grid-template-columns: 1fr;
+      }
+
+      .premium-record {
+        min-height: 70px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .home-ambient,
+      .home-logo-mark span:last-child,
+      .pet-coin-shine {
+        animation: none !important;
+      }
+    }
+
+
+    /* =========================
+       REFINO VISUAL GERAL v23
+       ========================= */
+
+    :root {
+      --v23-bg-1: #dff5ff;
+      --v23-bg-2: #ece9ff;
+      --v23-bg-3: #fff6df;
+      --v23-ink: #22304a;
+      --v23-muted: #6d7890;
+      --v23-blue: #5aaeff;
+      --v23-indigo: #6f78ff;
+      --v23-violet: #a26fff;
+      --v23-gold: #ffc84f;
+      --v23-soft-border: rgba(255,255,255,.76);
+      --v23-shadow: 0 22px 60px rgba(69, 82, 126, .16);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      color: var(--v23-ink);
+      background:
+        radial-gradient(circle at 10% 0%, rgba(109, 207, 255, .22), transparent 28%),
+        radial-gradient(circle at 95% 10%, rgba(166, 119, 255, .18), transparent 28%),
+        linear-gradient(145deg, var(--v23-bg-1), var(--v23-bg-2) 48%, var(--v23-bg-3));
+      background-attachment: fixed;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      z-index: -1;
+      pointer-events: none;
+      border-radius: 50%;
+      filter: blur(10px);
+      opacity: .45;
+    }
+
+    body::before {
+      width: 240px;
+      height: 240px;
+      top: 12%;
+      left: -90px;
+      background: rgba(87, 199, 255, .28);
+    }
+
+    body::after {
+      width: 280px;
+      height: 280px;
+      right: -110px;
+      bottom: 8%;
+      background: rgba(183, 112, 255, .22);
+    }
+
+    .glass,
+    .light-panel,
+    .stats-card,
+    .patient-action-panel,
+    .clinic-evolution,
+    .shop-screen-card,
+    .menu-card,
+    .modal-card {
+      border: 1px solid var(--v23-soft-border);
+      box-shadow:
+        var(--v23-shadow),
+        inset 0 1px 0 rgba(255,255,255,.9);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .game-navigation-bar {
+      position: sticky;
+      top: 0;
+      z-index: 700;
+      margin: 0 auto 14px;
+      width: min(1180px, calc(100% - 20px));
+      padding: 10px 12px;
+      border: 1px solid rgba(255,255,255,.72);
+      border-radius: 0 0 20px 20px;
+      background: rgba(248, 252, 255, .82);
+      box-shadow: 0 12px 28px rgba(55, 71, 112, .12);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    #goHomeButton,
+    .small-nav-button {
+      border: 0;
+      border-radius: 14px;
+      background: rgba(255,255,255,.82);
+      box-shadow: 0 6px 16px rgba(61, 76, 115, .1);
+      color: #4e5f7e;
+      font-weight: 850;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    #goHomeButton:hover,
+    .small-nav-button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 20px rgba(61, 76, 115, .14);
+    }
+
+    .game-class-chip {
+      border: 1px solid rgba(118, 126, 255, .14);
+      border-radius: 16px;
+      padding: 10px 13px;
+      background: linear-gradient(145deg, #f1efff, #e8f3ff);
+      color: #57618d;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.8);
+    }
+
+    .topbar {
+      gap: 14px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 88% 12%, rgba(255,255,255,.48), transparent 24%),
+        linear-gradient(135deg, rgba(255,255,255,.9), rgba(238,246,255,.76));
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      right: -70px;
+      top: -80px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, rgba(106,187,255,.18), rgba(166,112,255,.2));
+    }
+
+    .hero-logo {
+      position: relative;
+      overflow: hidden;
+      border-radius: 24px;
+      box-shadow: 0 16px 34px rgba(55, 76, 119, .18);
+    }
+
+    .hero-logo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, transparent 45%, rgba(255,255,255,.28) 55%, transparent 68%);
+      transform: translateX(-120%);
+      animation: v23Shimmer 5.5s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes v23Shimmer {
+      0%, 70% { transform: translateX(-120%); }
+      90%, 100% { transform: translateX(120%); }
+    }
+
+    .hero h1 {
+      color: #243353;
+      letter-spacing: -.04em;
+      text-shadow: 0 2px 0 rgba(255,255,255,.72);
+    }
+
+    .hero p {
+      color: #6a7691;
+      line-height: 1.6;
+    }
+
+    .shift-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #eef5ff, #f2ecff);
+      color: #59658a;
+      box-shadow: inset 0 1px 0 #fff;
+    }
+
+    .stats-card {
+      border-radius: 26px;
+      background:
+        radial-gradient(circle at 90% 5%, rgba(255,255,255,.5), transparent 24%),
+        linear-gradient(145deg, rgba(255,255,255,.86), rgba(246,249,255,.72));
+    }
+
+    .stat {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      padding: 14px;
+      background: linear-gradient(145deg, rgba(255,255,255,.88), rgba(235,243,255,.74));
+      border: 1px solid rgba(255,255,255,.82);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.9);
+    }
+
+    .stat::after {
+      content: "";
+      position: absolute;
+      width: 56px;
+      height: 56px;
+      right: -20px;
+      bottom: -24px;
+      border-radius: 50%;
+      background: rgba(109, 126, 255, .08);
+    }
+
+    .stat span {
+      color: #75809a;
+      font-weight: 750;
+    }
+
+    .stat strong {
+      color: #2a3858;
+      font-size: 1.18rem;
+    }
+
+    .xp-area {
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(240, 245, 255, .72);
+    }
+
+    .xp-bar {
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(87, 102, 145, .12);
+      box-shadow: inset 0 2px 5px rgba(41,58,89,.08);
+    }
+
+    .xp-fill,
+    .shift-fill {
+      background: linear-gradient(90deg, var(--v23-blue), var(--v23-indigo), var(--v23-violet));
+      box-shadow: 0 0 16px rgba(112, 120, 255, .3);
+      transition: width .45s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .main-grid {
+      gap: 16px;
+    }
+
+    .light-panel {
+      overflow: hidden;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 92% 5%, rgba(255,255,255,.55), transparent 22%),
+        linear-gradient(145deg, rgba(255,255,255,.9), rgba(246,250,255,.78));
+    }
+
+    .panel-head h2 {
+      color: #293856;
+      letter-spacing: -.02em;
+    }
+
+    .panel-head p {
+      color: #7b859c;
+    }
+
+    .queue-badge {
+      border: 1px solid rgba(103, 119, 255, .16);
+      border-radius: 15px;
+      background: linear-gradient(145deg, #edf1ff, #e7f4ff);
+      color: #536189;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.82);
+    }
+
+    .patient-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,.86);
+      background:
+        radial-gradient(circle at 90% 8%, rgba(255,255,255,.55), transparent 24%),
+        linear-gradient(145deg, #ffffff, #eff5ff);
+      box-shadow:
+        0 18px 42px rgba(58, 77, 120, .14),
+        inset 0 1px 0 #fff;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .patient-card:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 24px 50px rgba(58, 77, 120, .18),
+        inset 0 1px 0 #fff;
+    }
+
+    .animal-stage {
+      position: relative;
+      overflow: hidden;
+      border-radius: 22px;
+      background: linear-gradient(145deg, #e7f4ff, #eeeaff);
+    }
+
+    .animal-stage::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 32%;
+      background: linear-gradient(transparent, rgba(24, 38, 67, .16));
+      pointer-events: none;
+    }
+
+    .animal-photo {
+      transition: transform .35s ease, filter .35s ease;
+    }
+
+    .patient-card:hover .animal-photo {
+      transform: scale(1.025);
+      filter: saturate(1.04) contrast(1.02);
+    }
+
+    .night-tag,
+    .exam-tag {
+      border: 1px solid rgba(255,255,255,.68);
+      box-shadow: 0 6px 18px rgba(22, 36, 67, .14);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .patient-info h3 {
+      color: #263451;
+      letter-spacing: -.025em;
+    }
+
+    .patient-info .subtitle {
+      color: #7b859c;
+    }
+
+    .record-list {
+      gap: 9px;
+    }
+
+    .record-row {
+      border: 1px solid rgba(104, 122, 164, .11);
+      border-radius: 15px;
+      background: linear-gradient(145deg, rgba(255,255,255,.9), rgba(238,245,255,.68));
+      transition: transform .15s ease, background .15s ease;
+    }
+
+    .record-row:hover {
+      transform: translateX(2px);
+      background: linear-gradient(145deg, #fff, #edf5ff);
+    }
+
+    .record-row span:first-child {
+      color: #687693;
+      font-weight: 800;
+    }
+
+    .record-row span:last-child {
+      color: #2d3b59;
+      font-weight: 750;
+    }
+
+    .anomaly-highlight {
+      border-color: rgba(243, 154, 68, .32);
+      background: linear-gradient(145deg, #fff8e9, #fff1d4);
+      box-shadow: 0 8px 18px rgba(219, 147, 51, .12);
+    }
+
+    .scan-result {
+      border-radius: 18px;
+      border: 1px solid rgba(105, 126, 168, .12);
+      background: linear-gradient(145deg, #f3f7ff, #eef7ff);
+      color: #586682;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.9);
+    }
+
+    .scan-result.show {
+      animation: v23ResultIn .28s ease both;
+    }
+
+    @keyframes v23ResultIn {
+      from { opacity: 0; transform: translateY(6px) scale(.99); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .patient-action-panel {
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 88% 10%, rgba(255,255,255,.52), transparent 24%),
+        linear-gradient(145deg, rgba(247,250,255,.92), rgba(236,244,255,.8));
+    }
+
+    .patient-action-title strong {
+      color: #2d3a59;
+    }
+
+    .patient-action-title span {
+      color: #7c879f;
+    }
+
+    .btn,
+    .class-action-button,
+    .menu-main-button,
+    .menu-shop-button,
+    .modal-card button {
+      position: relative;
+      overflow: hidden;
+      border: 0;
+      transition:
+        transform .17s ease,
+        box-shadow .17s ease,
+        filter .17s ease;
+    }
+
+    .btn::after,
+    .class-action-button::after,
+    .modal-card button::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 38%, rgba(255,255,255,.26) 50%, transparent 62%);
+      transform: translateX(-130%);
+      transition: transform .5s ease;
+    }
+
+    .btn:hover::after,
+    .class-action-button:hover::after,
+    .modal-card button:hover::after {
+      transform: translateX(130%);
+    }
+
+    .btn:hover:not(:disabled),
+    .class-action-button:hover:not(:disabled),
+    .modal-card button:hover:not(:disabled) {
+      transform: translateY(-2px);
+      filter: saturate(1.04);
+    }
+
+    .scan-btn {
+      background: linear-gradient(135deg, #66c5ff, #5a92ff);
+      box-shadow: 0 12px 24px rgba(75, 144, 240, .22);
+    }
+
+    .treat-btn {
+      background: linear-gradient(135deg, #62d9ad, #38b98a);
+      box-shadow: 0 12px 24px rgba(53, 177, 133, .22);
+    }
+
+    .block-btn {
+      background: linear-gradient(135deg, #ffb95b, #ff8b5b);
+      box-shadow: 0 12px 24px rgba(233, 124, 67, .22);
+    }
+
+    .clinic-evolution {
+      overflow: hidden;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(112, 196, 255, .22), transparent 28%),
+        linear-gradient(145deg, rgba(255,255,255,.86), rgba(239,246,255,.76));
+    }
+
+    .clinic-room {
+      position: relative;
+      overflow: hidden;
+      border-radius: 22px;
+      background:
+        linear-gradient(180deg, #dff2ff 0 56%, #d5dde9 56% 100%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.85);
+    }
+
+    .clinic-room::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.14) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,.12) 1px, transparent 1px);
+      background-size: 34px 34px;
+      opacity: .5;
+      pointer-events: none;
+    }
+
+    .clinic-status-strip {
+      border-radius: 16px;
+      background: rgba(255,255,255,.78);
+      box-shadow: 0 8px 22px rgba(50, 68, 104, .1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .right-column > section {
+      border-radius: 26px;
+      background:
+        radial-gradient(circle at 90% 5%, rgba(255,255,255,.48), transparent 22%),
+        linear-gradient(145deg, rgba(255,255,255,.88), rgba(241,247,255,.76));
+    }
+
+    .upgrade-card,
+    .mask-upgrade-card {
+      border-radius: 20px;
+      border: 1px solid rgba(105, 122, 164, .12);
+      background: linear-gradient(145deg, rgba(255,255,255,.9), rgba(235,244,255,.75));
+      box-shadow: 0 10px 24px rgba(56, 74, 112, .08);
+    }
+
+    .log-box {
+      border: 1px solid rgba(95, 112, 153, .13);
+      border-radius: 18px;
+      background: linear-gradient(145deg, #f8fbff, #eef4fb);
+      color: #52617c;
+      box-shadow: inset 0 2px 8px rgba(40,55,85,.05);
+    }
+
+    .shop-screen-card {
+      border-radius: 32px;
+      background:
+        radial-gradient(circle at 88% 2%, rgba(255,255,255,.55), transparent 24%),
+        linear-gradient(145deg, rgba(255,255,255,.9), rgba(244,248,255,.82));
+    }
+
+    .shop-screen-head {
+      border-radius: 22px;
+      padding: 12px;
+      background: rgba(242, 247, 255, .76);
+    }
+
+    .class-grid {
+      gap: 14px;
+    }
+
+    .class-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.8);
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 90% 5%, rgba(255,255,255,.52), transparent 22%),
+        linear-gradient(145deg, #ffffff, #edf4ff);
+      box-shadow: 0 16px 34px rgba(59, 78, 120, .12);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .class-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 22px 42px rgba(59, 78, 120, .17);
+    }
+
+    .class-card.selected {
+      border-color: rgba(116, 108, 255, .34);
+      box-shadow:
+        0 20px 42px rgba(97, 101, 224, .18),
+        inset 0 0 0 2px rgba(120, 112, 255, .12);
+    }
+
+    .class-symbol {
+      border-radius: 18px;
+      background: rgba(255,255,255,.76);
+      box-shadow: 0 8px 20px rgba(60, 75, 110, .1);
+    }
+
+    .class-action-button {
+      border-radius: 16px;
+      background: linear-gradient(135deg, #6aafff, #7775ff);
+      box-shadow: 0 10px 20px rgba(87, 103, 226, .2);
+    }
+
+    .modal {
+      background:
+        radial-gradient(circle at 50% 18%, rgba(105, 155, 255, .18), transparent 34%),
+        rgba(18, 28, 50, .68);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .modal-card {
+      overflow: hidden;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 90% 5%, rgba(255,255,255,.52), transparent 24%),
+        linear-gradient(145deg, rgba(255,255,255,.98), rgba(240,246,255,.94));
+      box-shadow: 0 30px 90px rgba(14, 24, 48, .34);
+      animation: v23ModalIn .3s cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    @keyframes v23ModalIn {
+      from { opacity: 0; transform: translateY(12px) scale(.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .modal-icon {
+      display: inline-flex;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #e8efff, #eee8ff);
+      color: #5e6591;
+      box-shadow: inset 0 1px 0 #fff;
+    }
+
+    .modal-card h2 {
+      color: #283653;
+      letter-spacing: -.025em;
+    }
+
+    .modal-card p {
+      color: #6d7890;
+      line-height: 1.55;
+    }
+
+    .modal-card button {
+      border-radius: 17px;
+      background: linear-gradient(135deg, #5db6ff, #7477ff);
+      box-shadow: 0 12px 24px rgba(82, 104, 226, .24);
+    }
+
+    .containment-card {
+      border-radius: 28px;
+      box-shadow: 0 34px 100px rgba(0,0,0,.4);
+    }
+
+    .containment-copy {
+      background:
+        radial-gradient(circle at 90% 5%, rgba(255,255,255,.05), transparent 24%),
+        linear-gradient(180deg, #17243a, #0e1727);
+    }
+
+    .float-text {
+      border-radius: 14px;
+      padding: 10px 14px;
+      background: rgba(255,255,255,.92);
+      color: #37516c;
+      box-shadow: 0 14px 34px rgba(23, 40, 69, .2);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .float-text.error {
+      color: #8a4e3d;
+      background: rgba(255, 242, 232, .94);
+    }
+
+    @media (max-width: 780px) {
+      .app {
+        padding-inline: 10px;
+      }
+
+      .game-navigation-bar {
+        width: calc(100% - 8px);
+        border-radius: 0 0 18px 18px;
+        gap: 8px;
+      }
+
+      .hero,
+      .stats-card,
+      .light-panel,
+      .patient-action-panel,
+      .clinic-evolution,
+      .right-column > section {
+        border-radius: 22px;
+      }
+
+      .patient-card {
+        border-radius: 22px;
+      }
+
+      .actions {
+        gap: 9px;
+      }
+
+      .btn {
+        min-height: 54px;
+        font-size: .92rem;
+      }
+
+      .record-row {
+        padding: 11px 12px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .game-navigation-bar {
+        flex-wrap: wrap;
+      }
+
+      #goHomeButton {
+        flex: 1 1 100%;
+      }
+
+      .game-class-chip,
+      .premium-pet-chip {
+        flex: 1 1 calc(50% - 4px);
+        justify-content: center;
+      }
+
+      .hero {
+        grid-template-columns: 76px 1fr;
+        padding: 14px;
+      }
+
+      .hero-logo {
+        width: 76px;
+        height: 76px;
+      }
+
+      .hero h1 {
+        font-size: 1.48rem;
+      }
+
+      .hero p {
+        font-size: .82rem;
+      }
+
+      .stats-grid {
+        gap: 8px;
+      }
+
+      .stat {
+        padding: 11px 10px;
+      }
+
+      .stat span {
+        font-size: .67rem;
+      }
+
+      .stat strong {
+        font-size: .95rem;
+      }
+
+      .panel-head {
+        align-items: flex-start;
+      }
+
+      .queue-badge {
+        flex: 0 0 auto;
+      }
+
+      .animal-stage {
+        min-height: 240px;
+      }
+
+      .patient-info {
+        padding: 16px;
+      }
+
+      .actions {
+        grid-template-columns: 1fr;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .premium-menu-card {
+        box-shadow: 0 22px 56px rgba(67, 81, 126, .18);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+
+
+    .hero-title-row {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      flex-wrap: wrap;
+    }
+
+    .hero-premium-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 9px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #fff0a8, #ffd265);
+      color: #74500b;
+      font-size: .58rem;
+      font-weight: 950;
+      letter-spacing: .11em;
+      box-shadow: 0 7px 16px rgba(177, 118, 15, .16);
+    }
+
+
+    .special-item {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.82);
+    }
+
+    .special-item::before {
+      content: "";
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      right: -48px;
+      top: -52px;
+      border-radius: 50%;
+      opacity: .25;
+      pointer-events: none;
+    }
+
+    .duplicator-item {
+      background:
+        radial-gradient(circle at 90% 8%, rgba(194,137,255,.22), transparent 28%),
+        linear-gradient(145deg, #fbf7ff, #eee7ff);
+    }
+
+    .duplicator-item::before {
+      background: #9c6dff;
+    }
+
+    .pill-item {
+      background:
+        radial-gradient(circle at 90% 8%, rgba(100,218,177,.22), transparent 28%),
+        linear-gradient(145deg, #f6fffb, #e3f8ef);
+    }
+
+    .pill-item::before {
+      background: #45c995;
+    }
+
+    .special-item-title {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .special-item-icon {
+      display: grid;
+      place-items: center;
+      flex: 0 0 48px;
+      width: 48px;
+      height: 48px;
+      border-radius: 17px;
+      border: 1px solid rgba(255,255,255,.78);
+      box-shadow:
+        0 10px 22px rgba(59,71,108,.14),
+        inset 0 1px 0 rgba(255,255,255,.8);
+      font-size: 1.25rem;
+    }
+
+    .duplicator-icon {
+      color: #fff;
+      background: linear-gradient(145deg, #b78cff, #7869ed);
+      letter-spacing: -.3em;
+      padding-right: .3em;
+    }
+
+    .pill-icon {
+      background: linear-gradient(145deg, #effff8, #8ce0bd);
+      font-size: 1.5rem;
+    }
+
+    .special-effect-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 12px 0;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.64);
+      color: #6b7590;
+      font-size: .76rem;
+    }
+
+    .special-effect-row strong {
+      color: #35415f;
+      text-align: right;
+    }
+
+    .special-buy-btn {
+      background: linear-gradient(135deg, #7a8cff, #9b6df2);
+      box-shadow: 0 10px 22px rgba(104,91,221,.2);
+    }
+
+    .pill-item .special-buy-btn {
+      background: linear-gradient(135deg, #53d1a2, #36ae82);
+      box-shadow: 0 10px 22px rgba(48,168,125,.2);
+    }
+
+    .active-special-item {
+      border-color: rgba(108,111,255,.34);
+      box-shadow:
+        0 16px 34px rgba(93,91,211,.15),
+        inset 0 0 0 2px rgba(110,105,255,.1);
+      animation: activeItemGlow 2s ease-in-out infinite alternate;
+    }
+
+    .pill-item.active-special-item {
+      border-color: rgba(56,188,140,.36);
+      box-shadow:
+        0 16px 34px rgba(47,168,125,.15),
+        inset 0 0 0 2px rgba(54,190,141,.1);
+    }
+
+    @keyframes activeItemGlow {
+      from { filter: saturate(1); }
+      to { filter: saturate(1.1) brightness(1.02); }
+    }
+
+    @media (max-width: 520px) {
+      .special-item-title {
+        gap: 9px;
+      }
+
+      .special-item-icon {
+        flex-basis: 42px;
+        width: 42px;
+        height: 42px;
+        border-radius: 14px;
+      }
+
+      .special-item .shop-top {
+        align-items: flex-start;
+      }
+    }
+
+
+    .great-assistant-item {
+      background:
+        radial-gradient(circle at 90% 8%, rgba(255, 205, 91, .26), transparent 28%),
+        linear-gradient(145deg, #fffdf5, #fff2c9);
+    }
+
+    .great-assistant-item::before {
+      background: #f2ba38;
+    }
+
+    .great-assistant-icon {
+      color: #7c5708;
+      background: linear-gradient(145deg, #fff7c7, #ffc94f);
+      font-size: 1.4rem;
+    }
+
+    .great-assistant-item .special-buy-btn {
+      color: #5f4308;
+      background: linear-gradient(135deg, #ffd86b, #f5b52e);
+      box-shadow: 0 10px 22px rgba(186, 127, 18, .2);
+    }
+
+    .helper-item {
+      background:
+        radial-gradient(circle at 90% 8%, rgba(91, 188, 255, .22), transparent 28%),
+        linear-gradient(145deg, #f6fbff, #e1f1ff);
+    }
+
+    .helper-item::before {
+      background: #55a9ee;
+    }
+
+    .helper-icon {
+      background: linear-gradient(145deg, #edf9ff, #8fd2ff);
+      font-size: 1.45rem;
+    }
+
+    .helper-item .special-buy-btn {
+      background: linear-gradient(135deg, #67c6ff, #528fee);
+      box-shadow: 0 10px 22px rgba(62, 132, 216, .2);
+    }
+
 </style>
 </head>
 
@@ -2284,33 +3961,74 @@
   }());
 </script>
 
-<section id="homeScreen" class="menu-screen">
-  <div class="menu-card">
-    <div class="menu-brand">ANIMAL HOSPITAL</div>
-    <h1>Central do Hospital</h1>
-    <p>Escolha para onde deseja ir.</p>
+<section id="homeScreen" class="menu-screen premium-home">
+  <div class="home-ambient home-ambient-one"></div>
+  <div class="home-ambient home-ambient-two"></div>
 
-    <div class="home-wallet">
-      <span>Pet Moedas</span>
-      <strong>🐾 <span id="homePetCoinsDisplay">0</span></strong>
+  <div class="menu-card premium-menu-card">
+    <div class="home-topline">
+      <div class="home-logo-mark" aria-hidden="true">
+        <span>🐾</span>
+        <span>✦</span>
+      </div>
+
+      <div class="home-brand-copy">
+        <div class="menu-brand">SÉLUX ESTÚDIOS APRESENTA</div>
+        <div class="hero-title-row"><h1>Animal Hospital Tycoon</h1><span class="hero-premium-badge">NIGHT SHIFT</span></div>
+        <p>Cuide dos pacientes, identifique anomalias e evolua seu hospital.</p>
+      </div>
     </div>
 
-    <div class="home-record">
-      <span>🏆 Maior turno alcançado</span>
-      <strong>Turno <span id="homeMaxTurnDisplay">1</span></strong>
+    <div class="home-dashboard">
+      <article class="home-wallet premium-wallet">
+        <div class="pet-coin-emblem" aria-hidden="true">
+          <span class="pet-coin-paw">🐾</span>
+          <span class="pet-coin-shine">✦</span>
+        </div>
+        <div class="wallet-copy">
+          <span>Seu saldo</span>
+          <strong><span id="homePetCoinsDisplay">0</span></strong>
+          <small>Pet Moedas</small>
+        </div>
+      </article>
+
+      <article class="home-record premium-record">
+        <div class="record-icon" aria-hidden="true">🏆</div>
+        <div>
+          <span>Maior turno alcançado</span>
+          <strong>Turno <span id="homeMaxTurnDisplay">1</span></strong>
+        </div>
+      </article>
     </div>
 
-    <div class="menu-actions">
-      <button id="continueGameButton" class="menu-main-button" type="button">
-        Iniciar nova partida
+    <div class="milestone-banner">
+      <div class="milestone-icon">🎁</div>
+      <div>
+        <strong>Recompensa de progresso</strong>
+        <span>A cada 10 turnos completos, você ganha +50 Pet Moedas.</span>
+      </div>
+    </div>
+
+    <div class="menu-actions premium-menu-actions">
+      <button id="continueGameButton" class="menu-main-button premium-play-button" type="button">
+        <span class="button-icon">▶</span>
+        <span>
+          <strong>Iniciar nova partida</strong>
+          <small>Comece pelo Turno 1</small>
+        </span>
       </button>
-      <button id="openShopButton" class="menu-shop-button" type="button">
-        .SHOP.
+
+      <button id="openShopButton" class="menu-shop-button premium-shop-button" type="button">
+        <span class="button-icon">🛍️</span>
+        <span>
+          <strong>Loja de classes</strong>
+          <small>Use suas Pet Moedas</small>
+        </span>
       </button>
     </div>
 
-    <div class="active-class-summary">
-      Classe equipada:
+    <div class="active-class-summary premium-class-summary">
+      <span class="class-summary-label">Classe equipada</span>
       <strong id="homeClassDisplay">Iniciante</strong>
     </div>
   </div>
@@ -2324,7 +4042,13 @@
         <span class="shop-kicker">LOJA DE CLASSES</span>
         <h1>.SHOP.</h1>
       </div>
-      <div class="pet-wallet">🐾 <span id="shopPetCoinsDisplay">0</span></div>
+      <div class="pet-wallet premium-pet-chip">
+        <span class="mini-pet-coin">🐾</span>
+        <span class="pet-chip-copy">
+          <small>Pet Moedas</small>
+          <strong id="shopPetCoinsDisplay">0</strong>
+        </span>
+      </div>
     </div>
 
     <div class="class-grid">
@@ -2392,7 +4116,13 @@
   <div class="game-navigation-bar">
   <button id="goHomeButton" type="button">← Ir para o início</button>
   <div class="game-class-chip">Classe: <strong id="gameClassDisplay">Iniciante</strong></div>
-  <div class="game-pet-chip">🐾 <strong id="gamePetCoinsDisplay">0</strong></div>
+  <div class="game-pet-chip premium-pet-chip">
+    <span class="mini-pet-coin">🐾</span>
+    <span class="pet-chip-copy">
+      <small>Pet Moedas</small>
+      <strong id="gamePetCoinsDisplay">0</strong>
+    </span>
+  </div>
 </div>
 <header class="topbar">
     <section class="hero glass">
@@ -2406,11 +4136,11 @@
       <div>
         <h1>Animal Hospital Tycoon</h1>
         <p>
-            Comande o plantão da madrugada, trate animais verdadeiros e impeça
-            que criaturas anômalas atravessem a recepção do hospital.
+            Comande o plantão noturno, cuide dos animais e identifique visitantes
+            com dados estranhos antes que atravessem a recepção.
         </p>
         <div class="shift-pill">
-          <span id="nightLabel">Turno 1</span> — Protocolo de contenção ativo
+          <span id="nightLabel">Turno 1</span> — Protocolo de segurança ativo
         </div>
       </div>
     </section>
@@ -2425,9 +4155,9 @@
           <span>Reputação</span>
           <strong id="reputationDisplay">5</strong>
         </div>
-        <div class="stat">
-          <span>Danos</span>
-          <strong id="damageDisplay">0%</strong>
+        <div class="stat anomaly-limit-stat">
+          <span>Anomalias que entraram</span>
+          <strong id="damageDisplay">0/10</strong>
         </div>
       </div>
 
@@ -2447,14 +4177,14 @@
         <div class="panel-head">
           <div>
             <h2>Ficha de triagem</h2>
-            <p>Analise a ficha e use os botões logo abaixo para examinar, tratar ou barrar.</p>
+            <p>Analise a ficha e escolha entre tratar o paciente ou fechar a grade de segurança.</p>
           </div>
           <div class="queue-badge">Fila: <span id="queueDisplay">12</span></div>
         </div>
 
         <div id="patientCard" class="patient-card">
           <div class="animal-stage">
-            <div class="night-tag">Plantão noturno</div>
+            <div class="night-tag">Turno noturno</div>
             <div class="exam-tag" id="examTag">Não examinado</div>
             <img
                 class="animal-photo"
@@ -2489,7 +4219,7 @@
               ✅ Tratar paciente
             </button>
             <button id="blockButton" class="btn block-btn" type="button">
-              ⛔ Barrar anomalia
+              🚨 Fechar grade
             </button>
           </div>
         </section>
@@ -2572,7 +4302,7 @@
         <div class="panel-head">
           <div>
             <h2>Progresso do plantão</h2>
-            <p>Complete os 12 registros para encerrar o turno e receber R$ 100.</p>
+            <p>Complete os pacientes deste turno para receber R$ 100.</p>
           </div>
         </div>
 
@@ -2581,8 +4311,12 @@
         </div>
 
         <div class="shift-meta">
-          <span><span id="processedDisplay">0</span>/12 registros</span>
+          <span><span id="processedDisplay">0</span>/<span id="patientsPerTurnDisplay">3</span> pacientes</span>
           <span id="difficultyDisplay">Dificuldade: normal</span>
+        </div>
+
+        <div class="patient-progression-hint">
+          Começa com <strong>3 pacientes</strong> e aumenta <strong>+1 a cada 5 turnos</strong>, até o máximo de <strong>10</strong>.
         </div>
       </div>
     </section>
@@ -2663,6 +4397,116 @@
   </button>
 </div>
 
+
+<div class="shop-item special-item duplicator-item" id="duplicatorCard">
+  <div class="shop-top">
+    <div class="special-item-title">
+      <div class="special-item-icon duplicator-icon" aria-hidden="true">✦✦</div>
+      <div>
+        <h3>Duplicador de Anomalias</h3>
+        <p>
+          Faz com que <strong>todos os pacientes sejam anomalias por 2 turnos</strong>.
+          Pode ser usado no máximo <strong>10 vezes por partida</strong>.
+        </p>
+      </div>
+    </div>
+    <div class="shop-level">
+      <span id="duplicatorUsesDisplay">0</span>/10 usos
+    </div>
+  </div>
+
+  <div class="special-effect-row">
+    <span>Status</span>
+    <strong id="duplicatorStatusDisplay">Inativo</strong>
+  </div>
+
+  <button class="shop-btn special-buy-btn" id="buyDuplicator" type="button">
+    Comprar por <span id="duplicatorCostDisplay">R$ 10.000</span>
+  </button>
+</div>
+
+<div class="shop-item special-item pill-item" id="pillCard">
+  <div class="shop-top">
+    <div class="special-item-title">
+      <div class="special-item-icon pill-icon" aria-hidden="true">💊</div>
+      <div>
+        <h3>Pílula Multiplicadora</h3>
+        <p>
+          Durante <strong>1 turno</strong>, pacientes normais tratados corretamente
+          rendem <strong>4× mais dinheiro</strong>. Pode ser comprada sem limite.
+        </p>
+      </div>
+    </div>
+    <div class="shop-level">
+      <span id="pillPurchasesDisplay">0</span> compras
+    </div>
+  </div>
+
+  <div class="special-effect-row">
+    <span>Status</span>
+    <strong id="pillStatusDisplay">Inativa</strong>
+  </div>
+
+  <button class="shop-btn special-buy-btn" id="buyPill" type="button">
+    Comprar por <span id="pillCostDisplay">R$ 1.000</span>
+  </button>
+</div>
+
+
+<div class="shop-item special-item great-assistant-item" id="greatAssistantCard">
+  <div class="shop-top">
+    <div class="special-item-title">
+      <div class="special-item-icon great-assistant-icon" aria-hidden="true">⭐</div>
+      <div>
+        <h3>Ótimo Assistente</h3>
+        <p>
+          Cada unidade gera <strong>R$ 50 a cada 10 segundos</strong>,
+          em vez dos R$ 10 do assistente comum.
+        </p>
+      </div>
+    </div>
+    <div class="shop-level">
+      <span id="greatAssistantCountDisplay">0</span> contratados
+    </div>
+  </div>
+
+  <div class="special-effect-row">
+    <span>Renda por ciclo</span>
+    <strong id="greatAssistantIncomeDisplay">R$ 0 / 10 s</strong>
+  </div>
+
+  <button class="shop-btn special-buy-btn" id="buyGreatAssistant" type="button">
+    Contratar por <span id="greatAssistantCostDisplay">R$ 500</span>
+  </button>
+</div>
+
+<div class="shop-item special-item helper-item" id="helperCard">
+  <div class="shop-top">
+    <div class="special-item-title">
+      <div class="special-item-icon helper-icon" aria-hidden="true">🤝</div>
+      <div>
+        <h3>Ajudante</h3>
+        <p>
+          Cada melhoria aumenta em <strong>+50%</strong> todo o dinheiro recebido.
+          O bônus é cumulativo.
+        </p>
+      </div>
+    </div>
+    <div class="shop-level">
+      Nv. <span id="helperLevelDisplay">0</span>
+    </div>
+  </div>
+
+  <div class="special-effect-row">
+    <span>Bônus total</span>
+    <strong id="helperBonusDisplay">+0%</strong>
+  </div>
+
+  <button class="shop-btn special-buy-btn" id="buyHelper" type="button">
+    Melhorar por <span id="helperCostDisplay">R$ 500</span>
+  </button>
+</div>
+
 <div class="passive-box">
             <strong>Ganho passivo</strong>
             <div class="passive-value" id="passiveIncomeDisplay">+R$ 0,0/s</div>
@@ -2691,6 +4535,57 @@
 
 <div id="toastLayer" class="toast-layer"></div>
 
+
+<div id="containmentOverlay" class="containment-overlay" role="dialog" aria-modal="true" aria-live="assertive">
+  <div class="containment-card">
+    <div class="containment-lights" aria-hidden="true"><span></span><span></span></div>
+
+    <div class="containment-scene" aria-hidden="true">
+      <div class="containment-door"></div>
+      <div class="containment-vehicle"></div>
+    </div>
+
+    <div class="containment-copy">
+      <p class="containment-kicker" id="containmentKicker">EMERGÊNCIA</p>
+      <h2 id="containmentTitle">Grade de segurança fechada</h2>
+      <p id="containmentMessage">
+        Equipe de Contenção Veterinária acionada. Mantenha a área isolada.
+      </p>
+      <div id="containmentCountdown" class="containment-countdown">6</div>
+      <div id="containmentStatus" class="containment-status">Equipe a caminho...</div>
+    </div>
+  </div>
+</div>
+
+
+<div id="securityWarningModal" class="modal security-failure-modal" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <div class="modal-icon">ALERTA DE SEGURANÇA</div>
+    <h2>Uma anomalia entrou</h2>
+    <p id="securityWarningText">
+      A equipe isolou a área e o plantão poderá continuar.
+    </p>
+    <div class="security-failure-note">
+      O jogo termina somente quando 10 anomalias entrarem.
+    </div>
+    <button id="continueAfterWarningButton" type="button">Continuar o plantão</button>
+  </div>
+</div>
+
+<div id="securityFailureModal" class="modal security-failure-modal" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <div class="modal-icon">FALHA DE SEGURANÇA</div>
+    <h2>Limite de segurança atingido</h2>
+    <p>
+      A décima anomalia entrou na área clínica. O hospital foi fechado para uma inspeção completa.
+    </p>
+    <div class="security-failure-note">
+      Não há violência ou ferimentos exibidos. Pet Moedas, classes e recorde continuam salvos.
+    </div>
+    <button id="restartAfterFailureButton" type="button">Recomeçar do Turno 1</button>
+  </div>
+</div>
+
 <div id="nightModal" class="modal" role="dialog" aria-modal="true">
   <div class="modal-card">
     <div class="modal-icon" id="nightModalIcon">FIM DO TURNO</div>
@@ -2706,11 +4601,36 @@
     const STORAGE_KEY = "animalHospitalTycoonNightShift_v2";
     const BASE_ANOMALY_CHANCE = 0.30;
     const MASK_MAX_LEVEL = 10;
-    const RECORDS_PER_NIGHT = 12;
+    const STARTING_PATIENTS_PER_TURN = 3;
+    const PATIENT_INCREASE_EVERY_TURNS = 5;
+    const MAX_PATIENTS_PER_TURN = 10;
+
+    function getPatientsPerTurn(turn = game.night) {
+      const extraPatients = Math.floor((Math.max(1, turn) - 1) / PATIENT_INCREASE_EVERY_TURNS);
+      return Math.min(
+        MAX_PATIENTS_PER_TURN,
+        STARTING_PATIENTS_PER_TURN + extraPatients
+      );
+    }
     const MAX_TURN = 100000;
+    const MAX_ANOMALY_ENTRIES = 10;
     const XP_PER_LEVEL = 100;
     const ASSISTANT_TICK_MS = 10000;
     const PET_COINS_PER_TURN = 5;
+    const PET_COINS_EVERY_10_TURNS = 50;
+    const DUPLICATOR_START_COST = 10000;
+    const DUPLICATOR_COST_MULTIPLIER = 5;
+    const DUPLICATOR_MAX_USES = 10;
+    const DUPLICATOR_DURATION_TURNS = 2;
+    const PILL_START_COST = 1000;
+    const PILL_COST_MULTIPLIER = 4;
+    const PILL_REWARD_MULTIPLIER = 4;
+    const GREAT_ASSISTANT_START_COST = 500;
+    const GREAT_ASSISTANT_COST_MULTIPLIER = 3;
+    const GREAT_ASSISTANT_INCOME_PER_TICK = 50;
+    const HELPER_START_COST = 500;
+    const HELPER_COST_MULTIPLIER = 2;
+    const HELPER_BONUS_PER_LEVEL = 0.50;
     const CLASS_PRICES = Object.freeze({ intermediate: 400, medical: 1000, medicalIntermediate: 1500 });
     const CLASS_NAMES = Object.freeze({
       beginner: "Iniciante",
@@ -2812,57 +4732,58 @@
 
     const ANOMALY_MUTATIONS = {
       "Peso": [
-        "45 kg — Anomalia de peso!",
-        "0,02 kg — Massa incompatível!",
-        "Peso variável entre 3 kg e 90 kg!",
-        "Sem massa detectável!"
+        "45 kg — valor incompatível com a espécie",
+        "0,02 kg — medida fora do padrão",
+        "Peso alternando entre registros",
+        "Balança sem leitura confirmada"
       ],
       "Olhos": [
-        "Três olhos — Anomalia visual!",
-        "Nenhum olho visível!",
-        "Olhos girando em direções opostas!",
-        "Reflexo ocular vermelho constante!"
+        "Cor diferente da fotografia de cadastro",
+        "Quantidade informada não confere com a imagem",
+        "Reflexo ocular alternando no scanner",
+        "Biometria ocular não reconhecida"
       ],
       "Comportamento": [
-        "Falando em latim",
-        "Imitando a voz do funcionário",
-        "Olhando fixamente para uma parede vazia",
-        "Movendo-se apenas quando ninguém pisca"
+        "Repete exatamente a voz do atendente",
+        "Responde antes da pergunta terminar",
+        "Fica imóvel sempre que a câmera é ligada",
+        "Imita sons de equipamentos desligados"
       ],
       "Temperatura": [
-        "-12 °C — Temperatura impossível!",
-        "78 °C — Temperatura crítica!",
-        "Temperatura não detectável!",
-        "Oscilando 20 °C por segundo!"
+        "Leitura abaixo do limite do aparelho",
+        "Leitura acima do limite do aparelho",
+        "Temperatura não confirmada",
+        "Valor muda a cada nova medição"
       ],
       "Documentação": [
-        "Cadastro emitido amanhã",
-        "Tutor sem reflexo nas câmeras",
-        "Número de registro inexistente",
-        "Assinatura muda quando observada"
+        "Cadastro com data futura",
+        "Número de registro duplicado",
+        "Código de identificação inexistente",
+        "Assinatura digital não reconhecida"
       ]
     };
 
     const EXTRA_NORMAL_CLUES = [
       "O scanner confirmou sinais vitais compatíveis com a espécie.",
       "A estrutura óssea corresponde ao cadastro informado.",
-      "Nenhuma alteração sobrenatural foi detectada.",
+      "Nenhuma alteração fora do padrão foi detectada.",
       "O reflexo, a temperatura e a massa estão dentro do padrão.",
       "A biometria confere com o histórico veterinário."
     ];
 
     const EXTRA_ANOMALY_CLUES = [
-      "O scanner encontrou pulsação dupla e irregular.",
-      "A sombra do paciente aponta para a direção errada.",
-      "A câmera térmica mostra uma forma diferente da ficha.",
-      "O material genético não corresponde a nenhuma espécie conhecida.",
-      "O monitor registrou uma voz sem movimento da boca."
+      "O scanner encontrou dois cadastros diferentes para o mesmo paciente.",
+      "A câmera mostra uma pequena diferença entre a imagem e a ficha.",
+      "O leitor térmico apresenta dados incompatíveis com a espécie.",
+      "A identificação genética não corresponde ao cadastro apresentado.",
+      "O monitor registrou uma resposta antes do comando do atendente."
     ];
 
     const game = {
       money: 150,
       reputation: 5,
       hospitalDamage: 0,
+      anomalyEntries: 0,
       level: 1,
       xp: 0,
       night: 1,
@@ -2873,6 +4794,16 @@
       medicineAssistantCost: 100,
       maskLevel: 0,
       maskCost: 50000,
+      duplicatorCost: DUPLICATOR_START_COST,
+      duplicatorUses: 0,
+      duplicatorActiveThroughTurn: 0,
+      pillCost: PILL_START_COST,
+      pillPurchases: 0,
+      pillActiveTurn: 0,
+      greatAssistants: 0,
+      greatAssistantCost: GREAT_ASSISTANT_START_COST,
+      helperLevel: 0,
+      helperCost: HELPER_START_COST,
       petCoins: 0,
       maxTurnReached: 1,
       selectedClass: "beginner",
@@ -2881,6 +4812,9 @@
       currentPatient: null,
       examined: false,
       isProcessingDecision: false,
+      emergencyActive: false,
+      containmentInterval: null,
+      containmentTimeout: null,
       log: [],
       audioContext: null,
       assistantTimer: null,
@@ -2921,7 +4855,19 @@
       scanButton: document.getElementById("scanButton"),
       treatButton: document.getElementById("treatButton"),
       blockButton: document.getElementById("blockButton"),
+      containmentOverlay: document.getElementById("containmentOverlay"),
+      containmentKicker: document.getElementById("containmentKicker"),
+      containmentTitle: document.getElementById("containmentTitle"),
+      containmentMessage: document.getElementById("containmentMessage"),
+      containmentCountdown: document.getElementById("containmentCountdown"),
+      containmentStatus: document.getElementById("containmentStatus"),
+      securityWarningModal: document.getElementById("securityWarningModal"),
+      securityWarningText: document.getElementById("securityWarningText"),
+      continueAfterWarningButton: document.getElementById("continueAfterWarningButton"),
+      securityFailureModal: document.getElementById("securityFailureModal"),
+      restartAfterFailureButton: document.getElementById("restartAfterFailureButton"),
       processedDisplay: document.getElementById("processedDisplay"),
+      patientsPerTurnDisplay: document.getElementById("patientsPerTurnDisplay"),
       shiftFill: document.getElementById("shiftFill"),
       difficultyDisplay: document.getElementById("difficultyDisplay"),
       equipmentLevelDisplay: document.getElementById("equipmentLevelDisplay"),
@@ -2951,7 +4897,27 @@
       maskLevelDisplay: document.getElementById("maskLevelDisplay"),
       maskCostDisplay: document.getElementById("maskCostDisplay"),
       anomalyChanceDisplay: document.getElementById("anomalyChanceDisplay"),
-      maskUpgradeCard: document.getElementById("maskUpgradeCard")
+      maskUpgradeCard: document.getElementById("maskUpgradeCard"),
+      duplicatorCard: document.getElementById("duplicatorCard"),
+      buyDuplicator: document.getElementById("buyDuplicator"),
+      duplicatorCostDisplay: document.getElementById("duplicatorCostDisplay"),
+      duplicatorUsesDisplay: document.getElementById("duplicatorUsesDisplay"),
+      duplicatorStatusDisplay: document.getElementById("duplicatorStatusDisplay"),
+      pillCard: document.getElementById("pillCard"),
+      buyPill: document.getElementById("buyPill"),
+      pillCostDisplay: document.getElementById("pillCostDisplay"),
+      pillPurchasesDisplay: document.getElementById("pillPurchasesDisplay"),
+      pillStatusDisplay: document.getElementById("pillStatusDisplay"),
+      greatAssistantCard: document.getElementById("greatAssistantCard"),
+      buyGreatAssistant: document.getElementById("buyGreatAssistant"),
+      greatAssistantCountDisplay: document.getElementById("greatAssistantCountDisplay"),
+      greatAssistantIncomeDisplay: document.getElementById("greatAssistantIncomeDisplay"),
+      greatAssistantCostDisplay: document.getElementById("greatAssistantCostDisplay"),
+      helperCard: document.getElementById("helperCard"),
+      buyHelper: document.getElementById("buyHelper"),
+      helperLevelDisplay: document.getElementById("helperLevelDisplay"),
+      helperBonusDisplay: document.getElementById("helperBonusDisplay"),
+      helperCostDisplay: document.getElementById("helperCostDisplay")
     };
 
     function formatBRL(value, decimals = 0) {
@@ -3005,8 +4971,14 @@
         : 0;
     }
 
+    function getHelperMoneyMultiplier() {
+      return 1 + game.helperLevel * HELPER_BONUS_PER_LEVEL;
+    }
+
     function applyClassMoneyBonus(amount) {
-      return Math.floor(amount * getClassMoneyMultiplier());
+      return Math.floor(
+        amount * getClassMoneyMultiplier() * getHelperMoneyMultiplier()
+      );
     }
 
     function showScreen(screenName) {
@@ -3017,8 +4989,9 @@
       if (screenName === "game") {
         if (
           !game.currentPatient &&
-          game.processed < RECORDS_PER_NIGHT &&
-          !game.isProcessingDecision
+          game.processed < getPatientsPerTurn() &&
+          !game.isProcessingDecision &&
+          !game.emergencyActive
         ) {
           nextPatient();
         }
@@ -3088,6 +5061,14 @@
       });
     }
 
+    function isDuplicatorActive(turn = game.night) {
+      return game.duplicatorActiveThroughTurn >= turn;
+    }
+
+    function isPillActive(turn = game.night) {
+      return game.pillActiveTurn === turn;
+    }
+
     function getAnomalyChance() {
       return Math.max(
         0,
@@ -3153,11 +5134,18 @@
     }
 
     function getTreatmentMultiplier() {
-      return (1 + (game.equipmentLevel - 1) * 0.25) * getClassMoneyMultiplier();
+      return (
+        (1 + (game.equipmentLevel - 1) * 0.25) *
+        getClassMoneyMultiplier() *
+        getHelperMoneyMultiplier()
+      );
     }
 
     function getPassivePerTick() {
-      return applyClassMoneyBonus(game.assistants * 10);
+      const regularIncome = game.assistants * 10;
+      const greatAssistantIncome =
+        game.greatAssistants * GREAT_ASSISTANT_INCOME_PER_TICK;
+      return applyClassMoneyBonus(regularIncome + greatAssistantIncome);
     }
 
     function getPassivePerSecond() {
@@ -3177,7 +5165,8 @@
 
     function generatePatient() {
       const base = clone(pick(NORMAL_ANIMALS));
-      const isAnomaly = Math.random() < getAnomalyChance();
+      const isAnomaly =
+        isDuplicatorActive() || Math.random() < getAnomalyChance();
 
       // A foto nunca muda nas anomalias. Somente os dados do prontuário são alterados.
 
@@ -3228,6 +5217,7 @@
     }
 
     function nextPatient() {
+      if (game.emergencyActive) return;
       game.isProcessingDecision = false;
       game.currentPatient = makeAnomaliesHarderToNotice(generatePatient());
       game.examined = false;
@@ -3254,7 +5244,7 @@
         ui.animalPhoto.alt = "Imagem padrão da clínica veterinária";
       };
       ui.animalName.textContent = patient.name;
-      ui.animalSubtitle.textContent = `${patient.species} • Registro ${String(game.processed + 1).padStart(2, "0")}/12`;
+      ui.animalSubtitle.textContent = `${patient.species} • Paciente ${game.processed + 1}/${getPatientsPerTurn()}`;
       ui.examTag.textContent = game.examined ? "Examinado" : "Não examinado";
 
       ui.recordList.innerHTML = Object.entries(patient.fields)
@@ -3298,77 +5288,224 @@
 
     function treatPet() {
       const patient = game.currentPatient;
-      if (!patient || game.isProcessingDecision) return;
+      if (!patient || game.isProcessingDecision || game.emergencyActive) return;
 
       game.isProcessingDecision = true;
 
       if (patient.isAnomaly) {
-        const reputationLoss = 2 + Math.floor(game.night / 4);
-        const damage = 10 + Math.min(20, game.night * 2);
-
-        game.reputation = Math.max(0, game.reputation - reputationLoss);
-        game.hospitalDamage = clamp(game.hospitalDamage + damage, 0, 100);
-
-        addLog(
-          `ALARME: ${patient.name} era uma anomalia. -${reputationLoss} reputação e +${damage}% de danos.`
-        );
-
-        showFloating(`-${reputationLoss} reputação`, true);
-        playSound("alarm");
-      } else {
-        const baseReward = patient.reward;
-        const reward = Math.floor(baseReward * getTreatmentMultiplier());
-        const xp = patient.xpReward;
-
-        game.money += reward;
-        game.reputation += 1;
-        addXP(xp);
-
-        addLog(
-          `CURA: ${patient.name} tratado com sucesso. +${formatBRL(reward)} e +${xp} XP.`
-        );
-
-        showFloating(`+${formatBRL(reward)}`);
-        playSound("heal");
+        triggerSecurityFailure(patient);
+        return;
       }
 
+      const baseReward = patient.reward;
+      const pillMultiplier = isPillActive() ? PILL_REWARD_MULTIPLIER : 1;
+      const reward = Math.floor(
+        baseReward * getTreatmentMultiplier() * pillMultiplier
+      );
+      const xp = patient.xpReward;
+
+      game.money += reward;
+      game.reputation += 1;
+      addXP(xp);
+
+      addLog(
+        `CURA: ${patient.name} tratado com sucesso. +${formatBRL(reward)} e +${xp} XP.` +
+        (pillMultiplier > 1 ? " PÍLULA ATIVA: recompensa multiplicada por 4." : "")
+      );
+
+      showFloating(
+        pillMultiplier > 1
+          ? `💊 4× • +${formatBRL(reward)}`
+          : `+${formatBRL(reward)}`
+      );
+      playSound("heal");
       finishRecord();
     }
 
     function blockEntry() {
       const patient = game.currentPatient;
-      if (!patient || game.isProcessingDecision) return;
+      if (!patient || game.isProcessingDecision || game.emergencyActive) return;
 
       game.isProcessingDecision = true;
+      closeSecurityGate(patient);
+    }
 
-      if (patient.isAnomaly) {
-        const reward = applyClassMoneyBonus(patient.reward + 20);
-        const xp = patient.xpReward + 6;
-
-        game.money += reward;
-        game.reputation += 1;
-        addXP(xp);
-
-        addLog(
-          `SEGURANÇA: ${patient.name} foi barrado corretamente. +${formatBRL(reward)} e +${xp} XP.`
-        );
-
-        showFloating(`+${formatBRL(reward)}`);
-        playSound("heal");
-      } else {
-        const reputationLoss = 2;
-
-        game.reputation = Math.max(0, game.reputation - reputationLoss);
-
-        addLog(
-          `ERRO: ${patient.name} era inocente e foi barrado. -${reputationLoss} reputação.`
-        );
-
-        showFloating(`-${reputationLoss} reputação`, true);
-        playSound("error");
+    function clearEmergencyTimers() {
+      if (game.containmentInterval) {
+        window.clearInterval(game.containmentInterval);
+        game.containmentInterval = null;
       }
 
+      if (game.containmentTimeout) {
+        window.clearTimeout(game.containmentTimeout);
+        game.containmentTimeout = null;
+      }
+    }
+
+    function prepareContainmentOverlay() {
+      clearEmergencyTimers();
+
+      ui.containmentOverlay.className = "containment-overlay show";
+      ui.containmentKicker.textContent = "EMERGÊNCIA";
+      ui.containmentTitle.textContent = "Grade de segurança fechada";
+      ui.containmentMessage.textContent =
+        "Equipe de Contenção Veterinária acionada. Mantenha a área isolada.";
+      ui.containmentCountdown.textContent = "6";
+      ui.containmentStatus.textContent = "Equipe a caminho...";
+    }
+
+    function closeSecurityGate(patient) {
+      game.emergencyActive = true;
+      prepareContainmentOverlay();
+
+      addLog(
+        "EMERGÊNCIA: você acionou o botão vermelho. A grade metálica fechou e a área de triagem foi isolada."
+      );
+      playSound("alarm");
+
+      if (!patient.isAnomaly) {
+        handleFalseAlarm(patient);
+        return;
+      }
+
+      addLog(
+        "SISTEMA: Equipe de Contenção Veterinária acionada. Chegada estimada em 6 segundos."
+      );
+
+      let secondsRemaining = 6;
+
+      game.containmentInterval = window.setInterval(() => {
+        secondsRemaining -= 1;
+        ui.containmentCountdown.textContent = String(Math.max(0, secondsRemaining));
+
+        if (secondsRemaining === 3) {
+          ui.containmentStatus.textContent = "Veículo de contenção se aproximando...";
+          ui.containmentOverlay.classList.add("vehicle-arriving");
+          addLog("SISTEMA: veículo de contenção chegando à entrada.");
+        }
+
+        if (secondsRemaining <= 0) {
+          completeContainment(patient);
+        }
+      }, 1000);
+
+      updateUI();
+    }
+
+    function handleFalseAlarm(patient) {
+      const reputationLoss = 2;
+      game.reputation = Math.max(0, game.reputation - reputationLoss);
+
+      ui.containmentOverlay.classList.add("false-alarm");
+      ui.containmentKicker.textContent = "VERIFICAÇÃO CONCLUÍDA";
+      ui.containmentTitle.textContent = "Paciente regular";
+      ui.containmentMessage.textContent =
+        `${patient.name} não apresentava anomalia. A grade será reaberta com segurança.`;
+      ui.containmentCountdown.textContent = "—";
+      ui.containmentStatus.textContent = `-${reputationLoss} de reputação pelo alarme incorreto`;
+
+      addLog(
+        `ALARME INCORRETO: ${patient.name} era um paciente regular. -${reputationLoss} reputação.`
+      );
+      showFloating(`-${reputationLoss} reputação`, true);
+      playSound("error");
+      updateUI();
+
+      game.containmentTimeout = window.setTimeout(() => {
+        finishContainmentSequence();
+      }, 1800);
+    }
+
+    function completeContainment(patient) {
+      clearEmergencyTimers();
+
+      const reward = applyClassMoneyBonus(100);
+      const xp = 18;
+
+      game.money += reward;
+      game.reputation += 1;
+      addXP(xp);
+
+      ui.containmentOverlay.classList.add("success", "vehicle-arriving");
+      ui.containmentKicker.textContent = "ÁREA SEGURA";
+      ui.containmentTitle.textContent = "Anomalia contida com sucesso";
+      ui.containmentMessage.textContent =
+        `${patient.name} foi removido da entrada pela equipe especializada. Nenhuma violência é exibida.`;
+      ui.containmentCountdown.textContent = "✓";
+      ui.containmentStatus.textContent = `Recompensa: +${formatBRL(reward)} e +${xp} XP`;
+
+      addLog(
+        `CONTENÇÃO: anomalia removida com segurança. +${formatBRL(reward)} e +${xp} XP.`
+      );
+      showFloating(`+${formatBRL(reward)}`);
+      playSound("fanfare");
+      updateUI();
+
+      game.containmentTimeout = window.setTimeout(() => {
+        finishContainmentSequence();
+      }, 2100);
+    }
+
+    function finishContainmentSequence() {
+      clearEmergencyTimers();
+      game.emergencyActive = false;
+      ui.containmentOverlay.className = "containment-overlay";
       finishRecord();
+    }
+
+    function triggerSecurityFailure(patient) {
+      clearEmergencyTimers();
+      game.emergencyActive = false;
+      game.anomalyEntries = Math.min(
+        MAX_ANOMALY_ENTRIES,
+        game.anomalyEntries + 1
+      );
+      game.hospitalDamage = game.anomalyEntries * 10;
+
+      addLog(
+        `ALERTA DE SEGURANÇA: ${patient.name} era uma anomalia. Contagem: ${game.anomalyEntries}/${MAX_ANOMALY_ENTRIES}.`
+      );
+      playSound("error");
+      showFloating(
+        `Anomalia ${game.anomalyEntries}/${MAX_ANOMALY_ENTRIES}`,
+        true
+      );
+
+      game.processed += 1;
+      game.currentPatient = null;
+      game.examined = false;
+      game.isProcessingDecision = true;
+
+      if (game.anomalyEntries >= MAX_ANOMALY_ENTRIES) {
+        addLog(
+          "LIMITE ATINGIDO: dez anomalias entraram. O hospital foi fechado para inspeção."
+        );
+        ui.securityFailureModal.classList.add("show");
+        updateUI();
+        saveGame();
+        return;
+      }
+
+      const remaining = MAX_ANOMALY_ENTRIES - game.anomalyEntries;
+      ui.securityWarningText.textContent =
+        `A equipe isolou a área sem ferimentos. Esta foi a anomalia ${game.anomalyEntries} de ${MAX_ANOMALY_ENTRIES}. Restam ${remaining} falhas permitidas.`;
+      ui.securityWarningModal.classList.add("show");
+      updateUI();
+      saveGame();
+    }
+
+    function continueAfterAnomalyEntry() {
+      ui.securityWarningModal.classList.remove("show");
+      game.isProcessingDecision = false;
+
+      if (game.processed >= getPatientsPerTurn()) {
+        updateUI();
+        saveGame();
+        finishNight();
+        return;
+      }
+
+      nextPatient();
     }
 
     function finishRecord() {
@@ -3376,7 +5513,7 @@
       game.currentPatient = null;
       game.examined = false;
 
-      if (game.processed >= RECORDS_PER_NIGHT) {
+      if (game.processed >= getPatientsPerTurn()) {
         game.isProcessingDecision = false;
         updateUI();
         saveGame();
@@ -3392,18 +5529,32 @@
 
     function finishNight() {
       const nightBonus = applyClassMoneyBonus(100);
+      const milestonePetCoins =
+        game.night % 10 === 0 ? PET_COINS_EVERY_10_TURNS : 0;
+      const totalPetCoinsEarned = PET_COINS_PER_TURN + milestonePetCoins;
+
       game.money += nightBonus;
-      game.petCoins += PET_COINS_PER_TURN;
+      game.petCoins += totalPetCoinsEarned;
 
       addLog(
-        `TURNO CONCLUÍDO: bônus de ${formatBRL(nightBonus)} e +${PET_COINS_PER_TURN} Pet Moedas.`
+        `TURNO CONCLUÍDO: bônus de ${formatBRL(nightBonus)} e +${PET_COINS_PER_TURN} Pet Moedas.` +
+        (milestonePetCoins > 0
+          ? ` MARCO DE 10 TURNOS: +${milestonePetCoins} Pet Moedas extras!`
+          : "")
       );
 
       ui.nightModalText.textContent =
-        `Você processou 12 registros no Turno ${game.night}, recebeu ${formatBRL(nightBonus)} e ganhou ${PET_COINS_PER_TURN} Pet Moedas.`;
+        `Você atendeu ${getPatientsPerTurn()} pacientes no Turno ${game.night}, recebeu ${formatBRL(nightBonus)} e ganhou ${totalPetCoinsEarned} Pet Moedas.` +
+        (milestonePetCoins > 0
+          ? ` Bônus especial: +${milestonePetCoins} Pet Moedas por completar 10 turnos!`
+          : "");
 
       playSound("fanfare");
       ui.nightModal.classList.add("show");
+
+      if (milestonePetCoins > 0 && game.night < MAX_TURN) {
+        if (ui.nightModalIcon) ui.nightModalIcon.textContent = "MARCO DE 10 TURNOS";
+      }
 
       if (game.night >= MAX_TURN) {
         if (ui.nightModalIcon) ui.nightModalIcon.textContent = "CLÍNICA LENDÁRIA";
@@ -3412,7 +5563,9 @@
         ui.nextNightButton.textContent = "Todos os turnos concluídos";
         ui.nextNightButton.disabled = true;
       } else {
-        if (ui.nightModalIcon) ui.nightModalIcon.textContent = "FIM DO TURNO";
+        if (ui.nightModalIcon && milestonePetCoins === 0) {
+          ui.nightModalIcon.textContent = "FIM DO TURNO";
+        }
         ui.nextNightButton.textContent = "Iniciar próximo turno";
         ui.nextNightButton.disabled = false;
       }
@@ -3458,7 +5611,7 @@
         game.xp -= XP_PER_LEVEL;
         game.level += 1;
 
-        const levelBonus = 75 + game.level * 20;
+        const levelBonus = applyClassMoneyBonus(75 + game.level * 20);
         game.money += levelBonus;
 
         addLog(
@@ -3518,6 +5671,132 @@
     }
 
 
+
+    function buyGreatAssistant() {
+      if (game.money < game.greatAssistantCost) {
+        addLog("LOJA: dinheiro insuficiente para contratar o Ótimo Assistente.");
+        playSound("error");
+        return;
+      }
+
+      const paid = game.greatAssistantCost;
+      game.money -= paid;
+      game.greatAssistants += 1;
+      game.greatAssistantCost *= GREAT_ASSISTANT_COST_MULTIPLIER;
+
+      addLog(
+        `LOJA: Ótimo Assistente contratado por ${formatBRL(paid)}. ` +
+        `Total: ${game.greatAssistants}. Cada um gera ${formatBRL(GREAT_ASSISTANT_INCOME_PER_TICK)} por ciclo.`
+      );
+      showFloating("+1 Ótimo Assistente");
+      playSound("fanfare");
+      restartAssistantLoop();
+      updateUI();
+      saveGame();
+    }
+
+    function buyHelper() {
+      if (game.money < game.helperCost) {
+        addLog("LOJA: dinheiro insuficiente para melhorar o Ajudante.");
+        playSound("error");
+        return;
+      }
+
+      const paid = game.helperCost;
+      game.money -= paid;
+      game.helperLevel += 1;
+      game.helperCost *= HELPER_COST_MULTIPLIER;
+
+      const totalBonus = Math.round(
+        game.helperLevel * HELPER_BONUS_PER_LEVEL * 100
+      );
+
+      addLog(
+        `LOJA: Ajudante melhorado para o nível ${game.helperLevel}. ` +
+        `Bônus total de dinheiro: +${totalBonus}%.`
+      );
+      showFloating(`🤝 Dinheiro +${totalBonus}%`);
+      playSound("fanfare");
+      updateUI();
+      saveGame();
+    }
+
+    function buyDuplicator() {
+      if (game.duplicatorUses >= DUPLICATOR_MAX_USES) {
+        addLog("LOJA: o Duplicador já atingiu o limite de 10 usos nesta partida.");
+        playSound("error");
+        return;
+      }
+
+      if (isDuplicatorActive()) {
+        addLog("LOJA: o Duplicador já está ativo. Aguarde o efeito terminar.");
+        playSound("error");
+        return;
+      }
+
+      if (game.money < game.duplicatorCost) {
+        addLog("LOJA: dinheiro insuficiente para comprar o Duplicador.");
+        playSound("error");
+        return;
+      }
+
+      const paid = game.duplicatorCost;
+      game.money -= paid;
+      game.duplicatorUses += 1;
+      game.duplicatorActiveThroughTurn =
+        game.night + DUPLICATOR_DURATION_TURNS - 1;
+      game.duplicatorCost *= DUPLICATOR_COST_MULTIPLIER;
+
+      addLog(
+        `ITEM: Duplicador ativado nos turnos ${game.night} e ${game.duplicatorActiveThroughTurn}. ` +
+        `Todos os pacientes serão anomalias. Uso ${game.duplicatorUses}/${DUPLICATOR_MAX_USES}.`
+      );
+      showFloating("✦ Duplicador ativo por 2 turnos");
+      playSound("fanfare");
+
+      // Se o paciente atual ainda não foi analisado, ele também passa a ser
+      // substituído para que o efeito comece imediatamente.
+      if (
+        game.currentPatient &&
+        !game.examined &&
+        !game.isProcessingDecision
+      ) {
+        game.currentPatient = makeAnomaliesHarderToNotice(generatePatient());
+        renderPatient();
+      }
+
+      updateUI();
+      saveGame();
+    }
+
+    function buyPill() {
+      if (isPillActive()) {
+        addLog("LOJA: a Pílula já está ativa neste turno.");
+        playSound("error");
+        return;
+      }
+
+      if (game.money < game.pillCost) {
+        addLog("LOJA: dinheiro insuficiente para comprar a Pílula.");
+        playSound("error");
+        return;
+      }
+
+      const paid = game.pillCost;
+      game.money -= paid;
+      game.pillPurchases += 1;
+      game.pillActiveTurn = game.night;
+      game.pillCost *= PILL_COST_MULTIPLIER;
+
+      addLog(
+        `ITEM: Pílula ativada no Turno ${game.night}. ` +
+        `Pacientes normais tratados corretamente rendem 4× mais dinheiro.`
+      );
+      showFloating("💊 Pílula 4× ativa neste turno");
+      playSound("fanfare");
+      updateUI();
+      saveGame();
+    }
 
     function buyMaskUpgrade() {
       if (game.maskLevel >= MASK_MAX_LEVEL) {
@@ -3583,7 +5862,12 @@
     }
 
     function assistantTick() {
-      if (game.assistants <= 0) return;
+      if (
+        (game.assistants <= 0 && game.greatAssistants <= 0) ||
+        game.emergencyActive ||
+        ui.securityFailureModal?.classList.contains("show") ||
+        ui.securityWarningModal?.classList.contains("show")
+      ) return;
 
       const income = getPassivePerTick();
       game.money += income;
@@ -3691,9 +5975,9 @@
       }
 
       if (type === "alarm") {
-        tone(190, 0.28, "sawtooth", 0.055, 0);
-        tone(130, 0.34, "square", 0.04, 0.18);
-        tone(95, 0.42, "sawtooth", 0.035, 0.37);
+        tone(420, 0.16, "sine", 0.035, 0);
+        tone(520, 0.16, "triangle", 0.03, 0.20);
+        tone(420, 0.16, "sine", 0.03, 0.40);
       }
 
       if (type === "error") {
@@ -3725,8 +6009,8 @@
     }
 
     function updateUI() {
-      const remaining = Math.max(0, RECORDS_PER_NIGHT - game.processed);
-      const shiftPercent = clamp((game.processed / RECORDS_PER_NIGHT) * 100, 0, 100);
+      const remaining = Math.max(0, getPatientsPerTurn() - game.processed);
+      const shiftPercent = clamp((game.processed / getPatientsPerTurn()) * 100, 0, 100);
       const xpPercent = clamp((game.xp / XP_PER_LEVEL) * 100, 0, 100);
       const equipmentCost = getEquipmentCost();
       const assistantCost = getAssistantCost();
@@ -3744,7 +6028,7 @@
 
       ui.moneyDisplay.textContent = formatBRL(game.money);
       ui.reputationDisplay.textContent = game.reputation;
-      ui.damageDisplay.textContent = `${game.hospitalDamage}%`;
+      ui.damageDisplay.textContent = `${game.anomalyEntries}/${MAX_ANOMALY_ENTRIES}`;
 
       ui.levelDisplay.textContent = game.level;
       ui.xpDisplay.textContent = game.xp;
@@ -3753,6 +6037,9 @@
       ui.nightLabel.textContent = `Turno ${game.night}/${MAX_TURN}`;
       ui.queueDisplay.textContent = remaining;
       ui.processedDisplay.textContent = game.processed;
+      if (ui.patientsPerTurnDisplay) {
+        ui.patientsPerTurnDisplay.textContent = getPatientsPerTurn();
+      }
       ui.shiftFill.style.width = `${shiftPercent}%`;
       ui.difficultyDisplay.textContent = getDifficultyLabel();
 
@@ -3812,18 +6099,117 @@
         );
       }
 
+      if (ui.greatAssistantCountDisplay) {
+        ui.greatAssistantCountDisplay.textContent = game.greatAssistants;
+      }
+      if (ui.greatAssistantIncomeDisplay) {
+        ui.greatAssistantIncomeDisplay.textContent =
+          `${formatBRL(game.greatAssistants * GREAT_ASSISTANT_INCOME_PER_TICK)} / 10 s`;
+      }
+      if (ui.greatAssistantCostDisplay) {
+        ui.greatAssistantCostDisplay.textContent =
+          formatBRL(game.greatAssistantCost);
+      }
+      if (ui.buyGreatAssistant) {
+        ui.buyGreatAssistant.disabled =
+          game.money < game.greatAssistantCost;
+        ui.buyGreatAssistant.innerHTML =
+          `Contratar por <span id="greatAssistantCostDisplay">${formatBRL(game.greatAssistantCost)}</span>`;
+      }
+
+      const helperBonusPercent = Math.round(
+        game.helperLevel * HELPER_BONUS_PER_LEVEL * 100
+      );
+      if (ui.helperLevelDisplay) {
+        ui.helperLevelDisplay.textContent = game.helperLevel;
+      }
+      if (ui.helperBonusDisplay) {
+        ui.helperBonusDisplay.textContent = `+${helperBonusPercent}%`;
+      }
+      if (ui.helperCostDisplay) {
+        ui.helperCostDisplay.textContent = formatBRL(game.helperCost);
+      }
+      if (ui.buyHelper) {
+        ui.buyHelper.disabled = game.money < game.helperCost;
+        ui.buyHelper.innerHTML =
+          `Melhorar por <span id="helperCostDisplay">${formatBRL(game.helperCost)}</span>`;
+      }
+      if (ui.helperCard) {
+        ui.helperCard.classList.toggle(
+          "active-special-item",
+          game.helperLevel > 0
+        );
+      }
+
+      const duplicatorActive = isDuplicatorActive();
+      const duplicatorMaxed = game.duplicatorUses >= DUPLICATOR_MAX_USES;
+
+      if (ui.duplicatorCostDisplay) {
+        ui.duplicatorCostDisplay.textContent = formatBRL(game.duplicatorCost);
+      }
+      if (ui.duplicatorUsesDisplay) {
+        ui.duplicatorUsesDisplay.textContent = game.duplicatorUses;
+      }
+      if (ui.duplicatorStatusDisplay) {
+        ui.duplicatorStatusDisplay.textContent = duplicatorActive
+          ? `Ativo até o Turno ${game.duplicatorActiveThroughTurn}`
+          : duplicatorMaxed
+            ? "Limite atingido"
+            : "Inativo";
+      }
+      if (ui.buyDuplicator) {
+        ui.buyDuplicator.disabled =
+          duplicatorMaxed || duplicatorActive || game.money < game.duplicatorCost;
+        ui.buyDuplicator.innerHTML = duplicatorMaxed
+          ? "Limite de 10 usos atingido"
+          : duplicatorActive
+            ? `Ativo até o Turno ${game.duplicatorActiveThroughTurn}`
+            : `Comprar por <span id="duplicatorCostDisplay">${formatBRL(game.duplicatorCost)}</span>`;
+      }
+      if (ui.duplicatorCard) {
+        ui.duplicatorCard.classList.toggle("active-special-item", duplicatorActive);
+        ui.duplicatorCard.classList.toggle("maxed", duplicatorMaxed);
+      }
+
+      const pillActive = isPillActive();
+
+      if (ui.pillCostDisplay) {
+        ui.pillCostDisplay.textContent = formatBRL(game.pillCost);
+      }
+      if (ui.pillPurchasesDisplay) {
+        ui.pillPurchasesDisplay.textContent = game.pillPurchases;
+      }
+      if (ui.pillStatusDisplay) {
+        ui.pillStatusDisplay.textContent = pillActive
+          ? `4× ativo no Turno ${game.night}`
+          : "Inativa";
+      }
+      if (ui.buyPill) {
+        ui.buyPill.disabled = pillActive || game.money < game.pillCost;
+        ui.buyPill.innerHTML = pillActive
+          ? "Pílula ativa neste turno"
+          : `Comprar por <span id="pillCostDisplay">${formatBRL(game.pillCost)}</span>`;
+      }
+      if (ui.pillCard) {
+        ui.pillCard.classList.toggle("active-special-item", pillActive);
+      }
+
 
 
       ui.soundButton.textContent =
         game.soundEnabled ? "Som ligado" : " Som desligado";
 
       const hasPatient = Boolean(game.currentPatient);
-      const decisionLocked = !hasPatient || game.isProcessingDecision;
-      ui.scanButton.disabled = !hasPatient || game.examined || game.isProcessingDecision;
+      const decisionLocked =
+        !hasPatient || game.isProcessingDecision || game.emergencyActive;
+      ui.scanButton.disabled =
+        !hasPatient || game.examined || game.isProcessingDecision || game.emergencyActive;
       ui.treatButton.disabled = decisionLocked;
       ui.blockButton.disabled = decisionLocked;
       ui.scanButton.textContent =
         game.examined ? " Exame complementar realizado" : "Fazer exame complementar";
+      ui.blockButton.textContent =
+        game.emergencyActive ? "🚨 Emergência em andamento" : "🚨 Fechar grade";
 
       ui.shiftLog.value = game.log.join("\n");
       ui.shiftLog.scrollTop = ui.shiftLog.scrollHeight;
@@ -3937,6 +6323,7 @@
       game.money = 150;
       game.reputation = 5;
       game.hospitalDamage = 0;
+      game.anomalyEntries = 0;
       game.level = 1;
       game.xp = 0;
       game.night = 1;
@@ -3947,11 +6334,26 @@
       game.medicineAssistantCost = 100;
       game.maskLevel = 0;
       game.maskCost = 50000;
+      game.duplicatorCost = DUPLICATOR_START_COST;
+      game.duplicatorUses = 0;
+      game.duplicatorActiveThroughTurn = 0;
+      game.pillCost = PILL_START_COST;
+      game.pillPurchases = 0;
+      game.pillActiveTurn = 0;
+      game.greatAssistants = 0;
+      game.greatAssistantCost = GREAT_ASSISTANT_START_COST;
+      game.helperLevel = 0;
+      game.helperCost = HELPER_START_COST;
       game.currentPatient = null;
       game.examined = false;
       game.isProcessingDecision = false;
+      game.emergencyActive = false;
       game.log = [];
 
+      clearEmergencyTimers();
+      ui.containmentOverlay.className = "containment-overlay";
+      ui.securityWarningModal.classList.remove("show");
+      ui.securityFailureModal.classList.remove("show");
       stopAssistantLoop();
       ui.scanResult.className = "scan-result";
       ui.scanResult.textContent = "";
@@ -4009,6 +6411,16 @@
         blockEntry();
       });
 
+      ui.continueAfterWarningButton?.addEventListener("click", () => {
+        continueAfterAnomalyEntry();
+      });
+
+      ui.restartAfterFailureButton?.addEventListener("click", () => {
+        ui.securityFailureModal.classList.remove("show");
+        resetCurrentRun({ goHome: false });
+        showScreen("game");
+      });
+
       ui.upgradeEquipmentButton.addEventListener("click", () => {
         ensureAudioContext();
         buyEquipment();
@@ -4027,6 +6439,26 @@
       ui.buyMaskUpgrade?.addEventListener("click", () => {
         ensureAudioContext();
         buyMaskUpgrade();
+      });
+
+      ui.buyDuplicator?.addEventListener("click", () => {
+        ensureAudioContext();
+        buyDuplicator();
+      });
+
+      ui.buyPill?.addEventListener("click", () => {
+        ensureAudioContext();
+        buyPill();
+      });
+
+      ui.buyGreatAssistant?.addEventListener("click", () => {
+        ensureAudioContext();
+        buyGreatAssistant();
+      });
+
+      ui.buyHelper?.addEventListener("click", () => {
+        ensureAudioContext();
+        buyHelper();
       });
 
       ui.soundButton.addEventListener("click", toggleSound);
@@ -4094,3 +6526,5 @@
 </script>
 </body>
 </html>
+
+<!-- Suspense leve e apropriado para público infantil, sem conteúdo gráfico. -->
