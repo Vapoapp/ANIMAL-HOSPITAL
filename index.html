@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="theme-color" content="#f4f9f7" />
-<title>Animal Hospital Tycoon — Novos Assistentes</title>
+<title>Animal Hospital Tycoon — Classes Segurança e BAD & BOY</title>
 
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800&display=swap');
@@ -3919,6 +3919,675 @@
       box-shadow: 0 10px 22px rgba(62, 132, 216, .2);
     }
 
+
+    .containment-overlay {
+      touch-action: manipulation;
+      cursor: pointer;
+    }
+
+    .containment-skip-hint {
+      margin-top: 13px;
+      padding: 8px 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 999px;
+      color: rgba(255,255,255,.72);
+      background: rgba(255,255,255,.06);
+      font-size: .7rem;
+      font-weight: 800;
+      letter-spacing: .03em;
+      text-align: center;
+      animation: containmentHintPulse 1.6s ease-in-out infinite;
+    }
+
+    .containment-overlay.false-alarm .containment-skip-hint {
+      display: none;
+    }
+
+    @keyframes containmentHintPulse {
+      0%, 100% { opacity: .55; transform: scale(.98); }
+      50% { opacity: 1; transform: scale(1); }
+    }
+
+
+    .anti-anomaly-item {
+      background:
+        radial-gradient(circle at 90% 8%, rgba(88, 183, 255, .24), transparent 28%),
+        linear-gradient(145deg, #f7fcff, #dfefff);
+    }
+
+    .anti-anomaly-item::before {
+      background: #4aa5eb;
+    }
+
+    .anti-anomaly-icon {
+      color: #fff;
+      background: linear-gradient(145deg, #79ceff, #438be5);
+      font-size: 1.45rem;
+    }
+
+    .anti-anomaly-item .special-buy-btn {
+      background: linear-gradient(135deg, #65c4ff, #4e82e5);
+      box-shadow: 0 10px 22px rgba(55, 122, 207, .22);
+    }
+
+    .super-pill-item {
+      background:
+        radial-gradient(circle at 90% 8%, rgba(255, 104, 178, .22), transparent 28%),
+        linear-gradient(145deg, #fff8fc, #ffe1f0);
+    }
+
+    .super-pill-item::before {
+      background: #ef6dad;
+    }
+
+    .super-pill-icon {
+      background: linear-gradient(145deg, #fff4fa, #ff9dcc);
+      font-size: 1.55rem;
+      animation: superPillFloat 2s ease-in-out infinite;
+    }
+
+    .super-pill-item .special-buy-btn {
+      background: linear-gradient(135deg, #ff80bd, #d95fa2);
+      box-shadow: 0 10px 22px rgba(205, 75, 145, .22);
+    }
+
+    @keyframes superPillFloat {
+      0%, 100% { transform: translateY(0) rotate(-4deg); }
+      50% { transform: translateY(-3px) rotate(4deg); }
+    }
+
+
+    /* Van premium da Equipe de Contenção */
+    .containment-scene {
+      height: 210px;
+      background:
+        radial-gradient(ellipse at 50% 100%, rgba(41, 112, 174, .28), transparent 52%),
+        linear-gradient(180deg, rgba(92,127,173,.15), rgba(3,9,18,.64)),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.025) 0 1px, transparent 1px 34px);
+    }
+
+    .containment-scene::after {
+      content: "";
+      position: absolute;
+      z-index: 2;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 25px;
+      background:
+        linear-gradient(180deg, rgba(11,19,29,.35), rgba(4,8,14,.94)),
+        repeating-linear-gradient(
+          90deg,
+          transparent 0 34px,
+          rgba(255,211,75,.42) 34px 62px,
+          transparent 62px 100px
+        );
+      border-top: 1px solid rgba(255,255,255,.08);
+      pointer-events: none;
+    }
+
+    .containment-vehicle {
+      position: absolute;
+      z-index: 5;
+      left: -230px;
+      bottom: 25px;
+      width: 184px;
+      height: 94px;
+      border: 0;
+      border-radius: 28px 42px 17px 17px;
+      opacity: 0;
+      background:
+        linear-gradient(90deg, transparent 0 60%, rgba(255,255,255,.24) 60% 62%, transparent 62%),
+        linear-gradient(180deg, #f9fdff 0 11%, #eaf5fa 12% 52%, #2d8fbc 53% 71%, #d8e8ee 72% 100%);
+      box-shadow:
+        0 13px 20px rgba(0,0,0,.44),
+        inset 0 2px 0 rgba(255,255,255,.95),
+        inset 0 -5px 0 rgba(42,75,91,.22);
+      transform-origin: center bottom;
+    }
+
+    .containment-vehicle::before,
+    .containment-vehicle::after {
+      content: none;
+      display: none;
+    }
+
+    .van-body-accent {
+      position: absolute;
+      left: 14px;
+      right: 13px;
+      top: 53px;
+      height: 6px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #176d9d, #45c1db 54%, #176d9d);
+      box-shadow: 0 1px 0 rgba(255,255,255,.45);
+    }
+
+    .van-lightbar {
+      position: absolute;
+      z-index: 8;
+      top: -9px;
+      left: 69px;
+      display: flex;
+      width: 50px;
+      height: 13px;
+      padding: 2px;
+      border: 2px solid #35495a;
+      border-radius: 6px;
+      background: #cdd9df;
+      box-shadow: 0 4px 9px rgba(0,0,0,.32);
+    }
+
+    .van-light {
+      flex: 1;
+      border-radius: 3px;
+      opacity: .4;
+    }
+
+    .van-light-red {
+      background: #ff4059;
+      box-shadow: -8px 0 20px rgba(255,50,77,.8);
+      animation: vanEmergencyRed .55s steps(1,end) infinite;
+    }
+
+    .van-light-blue {
+      background: #38a5ff;
+      box-shadow: 8px 0 20px rgba(46,151,255,.82);
+      animation: vanEmergencyBlue .55s steps(1,end) infinite;
+    }
+
+    @keyframes vanEmergencyRed {
+      0%, 49% { opacity: 1; filter: brightness(1.8); }
+      50%, 100% { opacity: .25; filter: none; }
+    }
+
+    @keyframes vanEmergencyBlue {
+      0%, 49% { opacity: .25; filter: none; }
+      50%, 100% { opacity: 1; filter: brightness(1.8); }
+    }
+
+    .van-windshield {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 52px;
+      height: 35px;
+      border: 3px solid #456174;
+      border-radius: 5px 23px 4px 5px;
+      transform: skewX(8deg);
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.6) 0 18%, transparent 19%),
+        linear-gradient(145deg, #80bfdc, #233f59);
+      box-shadow: inset 0 -6px 10px rgba(7,31,50,.28);
+    }
+
+    .van-side-window {
+      position: absolute;
+      top: 11px;
+      right: 70px;
+      width: 40px;
+      height: 33px;
+      border: 3px solid #456174;
+      border-radius: 6px;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.48) 0 18%, transparent 19%),
+        linear-gradient(145deg, #8bc7df, #29475e);
+    }
+
+    .van-door-seam {
+      position: absolute;
+      top: 8px;
+      right: 64px;
+      width: 1px;
+      height: 70px;
+      background: rgba(52,82,98,.34);
+      box-shadow: 1px 0 rgba(255,255,255,.5);
+    }
+
+    .van-emblem {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      left: 16px;
+      top: 13px;
+      width: 38px;
+      height: 38px;
+      border: 3px solid #fff;
+      border-radius: 50%;
+      color: #fff;
+      background: linear-gradient(145deg, #56c7db, #176e9e);
+      box-shadow: 0 5px 12px rgba(13,86,121,.28);
+      font-size: 1.14rem;
+    }
+
+    .van-service-name {
+      position: absolute;
+      left: 59px;
+      top: 17px;
+      color: #174968;
+      font-size: .72rem;
+      font-weight: 1000;
+      letter-spacing: .055em;
+      text-shadow: 0 1px 0 #fff;
+    }
+
+    .van-service-subtitle {
+      position: absolute;
+      left: 59px;
+      top: 31px;
+      color: #427187;
+      font-size: .48rem;
+      font-weight: 950;
+      letter-spacing: .16em;
+    }
+
+    .van-headlight {
+      position: absolute;
+      z-index: 7;
+      right: -2px;
+      bottom: 27px;
+      width: 10px;
+      height: 14px;
+      border-radius: 2px 6px 6px 2px;
+      background: #fff4a5;
+      box-shadow:
+        5px 0 12px rgba(255,231,112,.85),
+        18px 0 28px rgba(255,231,112,.28);
+    }
+
+    .van-taillight {
+      position: absolute;
+      left: 0;
+      bottom: 29px;
+      width: 7px;
+      height: 15px;
+      border-radius: 3px 0 0 3px;
+      background: #ff5060;
+      box-shadow: -4px 0 12px rgba(255,64,79,.45);
+    }
+
+    .van-bumper {
+      position: absolute;
+      left: -3px;
+      right: -3px;
+      bottom: 8px;
+      height: 8px;
+      border-radius: 5px;
+      background: linear-gradient(180deg, #5d707c, #273945);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.32);
+    }
+
+    .van-wheel {
+      position: absolute;
+      z-index: 8;
+      bottom: -13px;
+      width: 32px;
+      height: 32px;
+      border: 5px solid #111923;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle, #9baab3 0 21%, #354550 22% 45%, #18222b 46% 100%);
+      box-shadow:
+        0 4px 7px rgba(0,0,0,.5),
+        inset 0 0 0 2px rgba(255,255,255,.08);
+    }
+
+    .van-wheel span {
+      position: absolute;
+      inset: 8px;
+      border: 2px dashed rgba(226,238,244,.65);
+      border-radius: 50%;
+    }
+
+    .van-wheel-rear {
+      left: 28px;
+    }
+
+    .van-wheel-front {
+      right: 25px;
+    }
+
+    .van-shadow {
+      position: absolute;
+      z-index: -1;
+      left: 12px;
+      right: 5px;
+      bottom: -17px;
+      height: 17px;
+      border-radius: 50%;
+      background: rgba(0,0,0,.42);
+      filter: blur(5px);
+    }
+
+    .containment-overlay.vehicle-arriving .containment-vehicle {
+      opacity: 1;
+      animation:
+        containmentArrival 1.12s cubic-bezier(.16,.82,.24,1.04) forwards,
+        vanEngineIdle .85s ease-in-out 1.12s infinite alternate;
+    }
+
+    .containment-overlay.vehicle-arriving .van-wheel {
+      animation: vanWheelSpin .42s linear 3;
+    }
+
+    @keyframes containmentArrival {
+      0% {
+        left: -230px;
+        filter: brightness(.78);
+      }
+      68% {
+        left: calc(50% - 78px);
+        filter: brightness(1.08);
+      }
+      84% {
+        left: calc(50% - 96px);
+      }
+      100% {
+        left: calc(50% - 92px);
+        filter: brightness(1);
+      }
+    }
+
+    @keyframes vanWheelSpin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes vanEngineIdle {
+      from { transform: translateY(0) rotate(-.15deg); }
+      to { transform: translateY(-1.5px) rotate(.15deg); }
+    }
+
+    .containment-overlay.success .containment-vehicle {
+      filter: saturate(1.08);
+    }
+
+    /* Classe Veterinário */
+    .class-veterinarian {
+      background:
+        radial-gradient(circle at 88% 5%, rgba(255,231,118,.42), transparent 27%),
+        linear-gradient(145deg, #fffdf2, #e7f8f5 52%, #e7efff);
+      border-color: rgba(229, 178, 58, .32);
+    }
+
+    .class-veterinarian::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(115deg, transparent 24%, rgba(255,255,255,.58) 40%, transparent 56%);
+      transform: translateX(-125%);
+      animation: veterinarianCardShine 5s ease-in-out infinite;
+    }
+
+    @keyframes veterinarianCardShine {
+      0%, 68% { transform: translateX(-125%); }
+      90%, 100% { transform: translateX(125%); }
+    }
+
+    .veterinarian-symbol {
+      position: relative;
+      color: #fff;
+      background: linear-gradient(145deg, #48c7a1, #367ed7);
+      box-shadow:
+        0 11px 23px rgba(48,141,146,.23),
+        inset 0 1px 0 rgba(255,255,255,.48);
+    }
+
+    .veterinarian-symbol span:first-child {
+      font-size: 1.45rem;
+    }
+
+    .veterinarian-symbol span:last-child {
+      position: absolute;
+      right: 5px;
+      bottom: 3px;
+      display: grid;
+      place-items: center;
+      width: 19px;
+      height: 19px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      color: #3d7a91;
+      background: #fff5ad;
+      font-size: .68rem;
+      font-weight: 950;
+    }
+
+    .veterinarian-rarity {
+      display: inline-flex;
+      width: fit-content;
+      color: #85620c;
+      background: linear-gradient(135deg, #fff5b8, #ffd763);
+      border-radius: 999px;
+      padding: 4px 8px;
+    }
+
+    .veterinarian-price {
+      color: #6d510f;
+      background: rgba(255,231,128,.42);
+      border: 1px solid rgba(210,158,42,.18);
+      border-radius: 11px;
+      padding: 8px 10px;
+    }
+
+    .veterinarian-action {
+      color: #fff;
+      background: linear-gradient(135deg, #41c59b, #4c87e6);
+      box-shadow: 0 11px 23px rgba(54,139,174,.24);
+    }
+
+    .class-veterinarian.selected {
+      border-color: rgba(49, 181, 143, .52);
+      box-shadow:
+        0 22px 48px rgba(50,151,150,.2),
+        inset 0 0 0 2px rgba(52,188,145,.15);
+    }
+
+    @media (max-width: 520px) {
+      .containment-scene {
+        height: 190px;
+      }
+
+      .containment-vehicle {
+        width: 164px;
+        height: 84px;
+      }
+
+      .van-service-name {
+        font-size: .63rem;
+      }
+
+      .van-side-window {
+        right: 62px;
+      }
+
+      .van-door-seam {
+        right: 57px;
+      }
+
+      .containment-overlay.vehicle-arriving .containment-vehicle {
+        animation:
+          containmentArrivalMobile 1.08s cubic-bezier(.16,.82,.24,1.04) forwards,
+          vanEngineIdle .85s ease-in-out 1.08s infinite alternate;
+      }
+
+      @keyframes containmentArrivalMobile {
+        0% { left: -210px; }
+        70% { left: calc(50% - 68px); }
+        86% { left: calc(50% - 88px); }
+        100% { left: calc(50% - 82px); }
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .containment-overlay.vehicle-arriving .containment-vehicle {
+        left: calc(50% - 92px);
+        opacity: 1;
+        animation: none !important;
+      }
+
+      .van-light,
+      .van-wheel,
+      .class-veterinarian::after {
+        animation: none !important;
+      }
+    }
+
+
+    /* Classe Segurança */
+    .class-security {
+      background:
+        radial-gradient(circle at 88% 5%, rgba(115, 197, 255, .38), transparent 27%),
+        linear-gradient(145deg, #f8fcff, #e2f1ff 52%, #edf4ff);
+      border-color: rgba(66, 143, 211, .28);
+    }
+
+    .security-symbol {
+      position: relative;
+      color: #fff;
+      background: linear-gradient(145deg, #65c8ff, #386fce);
+      box-shadow:
+        0 11px 23px rgba(44, 113, 183, .23),
+        inset 0 1px 0 rgba(255,255,255,.46);
+    }
+
+    .security-symbol span:last-child {
+      position: absolute;
+      right: 4px;
+      bottom: 3px;
+      display: grid;
+      place-items: center;
+      width: 19px;
+      height: 19px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      color: #236ca1;
+      background: #e9fbff;
+      font-size: .7rem;
+      font-weight: 1000;
+    }
+
+    .security-rarity {
+      display: inline-flex;
+      width: fit-content;
+      padding: 4px 8px;
+      border-radius: 999px;
+      color: #235d8d;
+      background: linear-gradient(135deg, #dff5ff, #a9ddff);
+    }
+
+    .security-price {
+      padding: 8px 10px;
+      border: 1px solid rgba(55, 126, 187, .17);
+      border-radius: 11px;
+      color: #285d82;
+      background: rgba(188, 225, 255, .42);
+    }
+
+    .security-action {
+      color: #fff;
+      background: linear-gradient(135deg, #58bfff, #4776da);
+      box-shadow: 0 11px 23px rgba(55, 118, 201, .22);
+    }
+
+    .class-security.selected {
+      border-color: rgba(56, 143, 216, .52);
+      box-shadow:
+        0 22px 48px rgba(47, 121, 185, .2),
+        inset 0 0 0 2px rgba(67, 153, 222, .14);
+    }
+
+    /* Classe BAD & BOY */
+    .class-bad-boy {
+      background:
+        radial-gradient(circle at 88% 5%, rgba(255, 72, 114, .28), transparent 27%),
+        radial-gradient(circle at 6% 92%, rgba(121, 80, 255, .25), transparent 30%),
+        linear-gradient(145deg, #201b2d, #342442 54%, #151b29);
+      border-color: rgba(255, 106, 143, .34);
+      color: #fff;
+    }
+
+    .class-bad-boy .class-info h2,
+    .class-bad-boy .class-info p {
+      color: #fff;
+    }
+
+    .class-bad-boy .class-info p {
+      opacity: .86;
+    }
+
+    .bad-boy-symbol {
+      position: relative;
+      color: #fff;
+      background:
+        linear-gradient(145deg, #ff567e, #7d4df2 55%, #283f69);
+      box-shadow:
+        0 12px 26px rgba(160, 55, 126, .3),
+        inset 0 1px 0 rgba(255,255,255,.34);
+    }
+
+    .bad-boy-symbol span:last-child {
+      position: absolute;
+      right: 2px;
+      bottom: 2px;
+      font-size: .92rem;
+      filter: drop-shadow(0 2px 3px rgba(0,0,0,.25));
+    }
+
+    .bad-boy-rarity {
+      display: inline-flex;
+      width: fit-content;
+      padding: 4px 8px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 999px;
+      color: #ffe56e;
+      background: linear-gradient(135deg, rgba(255,78,120,.35), rgba(114,76,228,.42));
+    }
+
+    .bad-boy-price {
+      padding: 8px 10px;
+      border: 1px solid rgba(255,221,96,.2);
+      border-radius: 11px;
+      color: #ffe580;
+      background: rgba(255,255,255,.07);
+    }
+
+    .bad-boy-action {
+      color: #fff;
+      background: linear-gradient(135deg, #ff537c, #7b4be9);
+      box-shadow: 0 12px 26px rgba(164, 55, 133, .28);
+    }
+
+    .class-bad-boy.selected {
+      border-color: rgba(255, 95, 135, .58);
+      box-shadow:
+        0 24px 54px rgba(125, 48, 110, .28),
+        inset 0 0 0 2px rgba(255, 93, 136, .14);
+    }
+
+    .class-bad-boy::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(115deg, transparent 25%, rgba(255,255,255,.12) 42%, transparent 58%);
+      transform: translateX(-130%);
+      animation: badBoyShine 4.8s ease-in-out infinite;
+    }
+
+    @keyframes badBoyShine {
+      0%, 70% { transform: translateX(-130%); }
+      92%, 100% { transform: translateX(130%); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .class-bad-boy::after {
+        animation: none !important;
+      }
+    }
+
 </style>
 </head>
 
@@ -4105,6 +4774,67 @@
           <div class="class-price">🐾 1.500 Pet Moedas</div>
         </div>
         <button class="class-action-button" data-class-action="medicalIntermediate" type="button">
+          Comprar
+        </button>
+      </article>
+      <article class="class-card class-veterinarian" data-class-card="veterinarian">
+        <div class="class-symbol veterinarian-symbol">
+          <span>🐾</span>
+          <span>⚕</span>
+        </div>
+        <div class="class-info">
+          <span class="class-rarity veterinarian-rarity">Classe lendária</span>
+          <h2>Veterinário</h2>
+          <p>
+            Recebe <strong>2× o dinheiro ao tratar animais</strong> e
+            <strong>+25% em todo o dinheiro recebido</strong>.
+            Os dois bônus funcionam juntos nos tratamentos.
+          </p>
+          <div class="class-price veterinarian-price">🐾 3.000 Pet Moedas</div>
+        </div>
+        <button class="class-action-button veterinarian-action" data-class-action="veterinarian" type="button">
+          Comprar
+        </button>
+      </article>
+      <article class="class-card class-security" data-class-card="security">
+        <div class="class-symbol security-symbol">
+          <span>🛡️</span>
+          <span>✓</span>
+        </div>
+        <div class="class-info">
+          <span class="class-rarity security-rarity">Classe especial</span>
+          <h2>Segurança</h2>
+          <p>
+            Reduz a chance de anomalias em
+            <strong>10 pontos percentuais</strong> e concede
+            <strong>+25% em todo o dinheiro recebido</strong>.
+          </p>
+          <div class="class-price security-price">🐾 2.000 Pet Moedas</div>
+        </div>
+        <button class="class-action-button security-action" data-class-action="security" type="button">
+          Comprar
+        </button>
+      </article>
+
+      <article class="class-card class-bad-boy" data-class-card="badBoy">
+        <div class="class-symbol bad-boy-symbol">
+          <span>😎</span>
+          <span>⚡</span>
+        </div>
+        <div class="class-info">
+          <span class="class-rarity bad-boy-rarity">Classe rebelde</span>
+          <h2>BAD &amp; BOY</h2>
+          <p>
+            Reduz a chance de anomalias em
+            <strong>5 pontos percentuais</strong>, concede
+            <strong>+50% em todo o dinheiro recebido</strong>,
+            permite que <strong>3 anomalias adicionais entrem</strong>
+            e aumenta a recompensa normal para
+            <strong>10 Pet Moedas por turno</strong>.
+          </p>
+          <div class="class-price bad-boy-price">🐾 3.000 Pet Moedas</div>
+        </div>
+        <button class="class-action-button bad-boy-action" data-class-action="badBoy" type="button">
           Comprar
         </button>
       </article>
@@ -4507,6 +5237,62 @@
   </button>
 </div>
 
+
+<div class="shop-item special-item anti-anomaly-item" id="antiAnomalyCard">
+  <div class="shop-top">
+    <div class="special-item-title">
+      <div class="special-item-icon anti-anomaly-icon" aria-hidden="true">🛡️</div>
+      <div>
+        <h3>Ante Anomalia</h3>
+        <p>
+          Impede completamente o aparecimento de anomalias durante
+          <strong>2 turnos inteiros</strong>. O efeito começa no próximo turno.
+        </p>
+      </div>
+    </div>
+    <div class="shop-level">
+      <span id="antiAnomalyPurchasesDisplay">0</span> compras
+    </div>
+  </div>
+
+  <div class="special-effect-row">
+    <span>Status</span>
+    <strong id="antiAnomalyStatusDisplay">Inativo</strong>
+  </div>
+
+  <button class="shop-btn special-buy-btn" id="buyAntiAnomaly" type="button">
+    Comprar por <span id="antiAnomalyCostDisplay">R$ 2.000</span>
+  </button>
+</div>
+
+<div class="shop-item special-item super-pill-item" id="superPillCard">
+  <div class="shop-top">
+    <div class="special-item-title">
+      <div class="special-item-icon super-pill-icon" aria-hidden="true">💊</div>
+      <div>
+        <h3>💊 Super Pílula 💊</h3>
+        <p>
+          Durante <strong>3 turnos</strong>, cada paciente normal tratado
+          corretamente rende <strong>6× mais dinheiro</strong>.
+          Pode ser comprada quantas vezes quiser.
+        </p>
+      </div>
+    </div>
+    <div class="shop-level">
+      <span id="superPillPurchasesDisplay">0</span> compras
+    </div>
+  </div>
+
+  <div class="special-effect-row">
+    <span>Status</span>
+    <strong id="superPillStatusDisplay">Inativa</strong>
+  </div>
+
+  <button class="shop-btn special-buy-btn" id="buySuperPill" type="button">
+    Comprar por <span id="superPillCostDisplay">R$ 1.000</span>
+  </button>
+</div>
+
 <div class="passive-box">
             <strong>Ganho passivo</strong>
             <div class="passive-value" id="passiveIncomeDisplay">+R$ 0,0/s</div>
@@ -4542,7 +5328,25 @@
 
     <div class="containment-scene" aria-hidden="true">
       <div class="containment-door"></div>
-      <div class="containment-vehicle"></div>
+      <div class="containment-vehicle" aria-hidden="true">
+        <div class="van-shadow"></div>
+        <div class="van-body-accent"></div>
+        <div class="van-lightbar">
+          <span class="van-light van-light-red"></span>
+          <span class="van-light van-light-blue"></span>
+        </div>
+        <div class="van-windshield"></div>
+        <div class="van-side-window"></div>
+        <div class="van-door-seam"></div>
+        <div class="van-emblem">🐾</div>
+        <div class="van-service-name">VET RESCUE</div>
+        <div class="van-service-subtitle">CONTENÇÃO</div>
+        <div class="van-headlight"></div>
+        <div class="van-taillight"></div>
+        <div class="van-bumper"></div>
+        <div class="van-wheel van-wheel-rear"><span></span></div>
+        <div class="van-wheel van-wheel-front"><span></span></div>
+      </div>
     </div>
 
     <div class="containment-copy">
@@ -4553,6 +5357,7 @@
       </p>
       <div id="containmentCountdown" class="containment-countdown">6</div>
       <div id="containmentStatus" class="containment-status">Equipe a caminho...</div>
+      <div class="containment-skip-hint">Toque em qualquer lugar para pular</div>
     </div>
   </div>
 </div>
@@ -4565,8 +5370,8 @@
     <p id="securityWarningText">
       A equipe isolou a área e o plantão poderá continuar.
     </p>
-    <div class="security-failure-note">
-      O jogo termina somente quando 10 anomalias entrarem.
+    <div class="security-failure-note" id="securityLimitNote">
+      O jogo termina quando o limite de anomalias for atingido.
     </div>
     <button id="continueAfterWarningButton" type="button">Continuar o plantão</button>
   </div>
@@ -4576,8 +5381,8 @@
   <div class="modal-card">
     <div class="modal-icon">FALHA DE SEGURANÇA</div>
     <h2>Limite de segurança atingido</h2>
-    <p>
-      A décima anomalia entrou na área clínica. O hospital foi fechado para uma inspeção completa.
+    <p id="securityFailureText">
+      O limite de anomalias foi atingido. O hospital foi fechado para uma inspeção completa.
     </p>
     <div class="security-failure-note">
       Não há violência ou ferimentos exibidos. Pet Moedas, classes e recorde continuam salvos.
@@ -4631,12 +5436,29 @@
     const HELPER_START_COST = 500;
     const HELPER_COST_MULTIPLIER = 2;
     const HELPER_BONUS_PER_LEVEL = 0.50;
-    const CLASS_PRICES = Object.freeze({ intermediate: 400, medical: 1000, medicalIntermediate: 1500 });
+    const ANTI_ANOMALY_START_COST = 2000;
+    const ANTI_ANOMALY_COST_MULTIPLIER = 2;
+    const ANTI_ANOMALY_DURATION_TURNS = 2;
+    const SUPER_PILL_START_COST = 1000;
+    const SUPER_PILL_COST_MULTIPLIER = 4;
+    const SUPER_PILL_REWARD_MULTIPLIER = 6;
+    const SUPER_PILL_DURATION_TURNS = 3;
+    const CLASS_PRICES = Object.freeze({
+      intermediate: 400,
+      medical: 1000,
+      medicalIntermediate: 1500,
+      veterinarian: 3000,
+      security: 2000,
+      badBoy: 3000
+    });
     const CLASS_NAMES = Object.freeze({
       beginner: "Iniciante",
       intermediate: "Intermediária",
       medical: "Médico Inicial",
-      medicalIntermediate: "Médico Intermediário"
+      medicalIntermediate: "Médico Intermediário",
+      veterinarian: "Veterinário",
+      security: "Segurança",
+      badBoy: "BAD & BOY"
     });
 
     const IMAGE_DATABASE = {
@@ -4804,6 +5626,13 @@
       greatAssistantCost: GREAT_ASSISTANT_START_COST,
       helperLevel: 0,
       helperCost: HELPER_START_COST,
+      antiAnomalyCost: ANTI_ANOMALY_START_COST,
+      antiAnomalyPurchases: 0,
+      antiAnomalyActiveFromTurn: 0,
+      antiAnomalyActiveThroughTurn: 0,
+      superPillCost: SUPER_PILL_START_COST,
+      superPillPurchases: 0,
+      superPillActiveThroughTurn: 0,
       petCoins: 0,
       maxTurnReached: 1,
       selectedClass: "beginner",
@@ -4815,6 +5644,9 @@
       emergencyActive: false,
       containmentInterval: null,
       containmentTimeout: null,
+      containmentPatient: null,
+      containmentCanSkip: false,
+      containmentResolved: false,
       log: [],
       audioContext: null,
       assistantTimer: null,
@@ -4863,8 +5695,10 @@
       containmentStatus: document.getElementById("containmentStatus"),
       securityWarningModal: document.getElementById("securityWarningModal"),
       securityWarningText: document.getElementById("securityWarningText"),
+      securityLimitNote: document.getElementById("securityLimitNote"),
       continueAfterWarningButton: document.getElementById("continueAfterWarningButton"),
       securityFailureModal: document.getElementById("securityFailureModal"),
+      securityFailureText: document.getElementById("securityFailureText"),
       restartAfterFailureButton: document.getElementById("restartAfterFailureButton"),
       processedDisplay: document.getElementById("processedDisplay"),
       patientsPerTurnDisplay: document.getElementById("patientsPerTurnDisplay"),
@@ -4917,7 +5751,17 @@
       buyHelper: document.getElementById("buyHelper"),
       helperLevelDisplay: document.getElementById("helperLevelDisplay"),
       helperBonusDisplay: document.getElementById("helperBonusDisplay"),
-      helperCostDisplay: document.getElementById("helperCostDisplay")
+      helperCostDisplay: document.getElementById("helperCostDisplay"),
+      antiAnomalyCard: document.getElementById("antiAnomalyCard"),
+      buyAntiAnomaly: document.getElementById("buyAntiAnomaly"),
+      antiAnomalyCostDisplay: document.getElementById("antiAnomalyCostDisplay"),
+      antiAnomalyPurchasesDisplay: document.getElementById("antiAnomalyPurchasesDisplay"),
+      antiAnomalyStatusDisplay: document.getElementById("antiAnomalyStatusDisplay"),
+      superPillCard: document.getElementById("superPillCard"),
+      buySuperPill: document.getElementById("buySuperPill"),
+      superPillCostDisplay: document.getElementById("superPillCostDisplay"),
+      superPillPurchasesDisplay: document.getElementById("superPillPurchasesDisplay"),
+      superPillStatusDisplay: document.getElementById("superPillStatusDisplay")
     };
 
     function formatBRL(value, decimals = 0) {
@@ -4954,6 +5798,13 @@
 
 
     function getClassMoneyMultiplier() {
+      if (game.selectedClass === "badBoy") return 1.50;
+      if (
+        game.selectedClass === "veterinarian" ||
+        game.selectedClass === "security"
+      ) {
+        return 1.25;
+      }
       if (game.selectedClass === "medicalIntermediate") return 1.15;
       if (
         game.selectedClass === "intermediate" ||
@@ -4964,11 +5815,32 @@
       return 1;
     }
 
+    function getClassTreatmentMultiplier() {
+      return game.selectedClass === "veterinarian" ? 2 : 1;
+    }
+
     function getClassAnomalyReduction() {
-      return game.selectedClass === "medical" ||
-        game.selectedClass === "medicalIntermediate"
-        ? 0.05
-        : 0;
+      if (game.selectedClass === "security") return 0.10;
+      if (
+        game.selectedClass === "medical" ||
+        game.selectedClass === "medicalIntermediate" ||
+        game.selectedClass === "badBoy"
+      ) {
+        return 0.05;
+      }
+      return 0;
+    }
+
+    function getMaxAnomalyEntries() {
+      return game.selectedClass === "badBoy"
+        ? MAX_ANOMALY_ENTRIES + 3
+        : MAX_ANOMALY_ENTRIES;
+    }
+
+    function getPetCoinsPerTurn() {
+      return game.selectedClass === "badBoy"
+        ? 10
+        : PET_COINS_PER_TURN;
     }
 
     function getHelperMoneyMultiplier() {
@@ -5069,6 +5941,37 @@
       return game.pillActiveTurn === turn;
     }
 
+    function isAntiAnomalyActive(turn = game.night) {
+      return (
+        game.antiAnomalyActiveFromTurn > 0 &&
+        turn >= game.antiAnomalyActiveFromTurn &&
+        turn <= game.antiAnomalyActiveThroughTurn
+      );
+    }
+
+    function isAntiAnomalyScheduled(turn = game.night) {
+      return (
+        game.antiAnomalyActiveFromTurn > turn &&
+        game.antiAnomalyActiveThroughTurn >= game.antiAnomalyActiveFromTurn
+      );
+    }
+
+    function isSuperPillActive(turn = game.night) {
+      return game.superPillActiveThroughTurn >= turn;
+    }
+
+    function getNormalPatientMoneyMultiplier(turn = game.night) {
+      const regularPillMultiplier = isPillActive(turn)
+        ? PILL_REWARD_MULTIPLIER
+        : 1;
+      const superPillMultiplier = isSuperPillActive(turn)
+        ? SUPER_PILL_REWARD_MULTIPLIER
+        : 1;
+
+      // A Super Pílula substitui a pílula comum. Os efeitos não se multiplicam.
+      return Math.max(regularPillMultiplier, superPillMultiplier);
+    }
+
     function getAnomalyChance() {
       return Math.max(
         0,
@@ -5136,6 +6039,7 @@
     function getTreatmentMultiplier() {
       return (
         (1 + (game.equipmentLevel - 1) * 0.25) *
+        getClassTreatmentMultiplier() *
         getClassMoneyMultiplier() *
         getHelperMoneyMultiplier()
       );
@@ -5165,8 +6069,9 @@
 
     function generatePatient() {
       const base = clone(pick(NORMAL_ANIMALS));
-      const isAnomaly =
-        isDuplicatorActive() || Math.random() < getAnomalyChance();
+      const isAnomaly = isAntiAnomalyActive()
+        ? false
+        : isDuplicatorActive() || Math.random() < getAnomalyChance();
 
       // A foto nunca muda nas anomalias. Somente os dados do prontuário são alterados.
 
@@ -5298,7 +6203,7 @@
       }
 
       const baseReward = patient.reward;
-      const pillMultiplier = isPillActive() ? PILL_REWARD_MULTIPLIER : 1;
+      const pillMultiplier = getNormalPatientMoneyMultiplier();
       const reward = Math.floor(
         baseReward * getTreatmentMultiplier() * pillMultiplier
       );
@@ -5308,14 +6213,21 @@
       game.reputation += 1;
       addXP(xp);
 
+      const activePillLabel =
+        pillMultiplier === SUPER_PILL_REWARD_MULTIPLIER
+          ? "SUPER PÍLULA ATIVA: recompensa multiplicada por 6."
+          : pillMultiplier === PILL_REWARD_MULTIPLIER
+            ? "PÍLULA ATIVA: recompensa multiplicada por 4."
+            : "";
+
       addLog(
         `CURA: ${patient.name} tratado com sucesso. +${formatBRL(reward)} e +${xp} XP.` +
-        (pillMultiplier > 1 ? " PÍLULA ATIVA: recompensa multiplicada por 4." : "")
+        (activePillLabel ? ` ${activePillLabel}` : "")
       );
 
       showFloating(
         pillMultiplier > 1
-          ? `💊 4× • +${formatBRL(reward)}`
+          ? `💊 ${pillMultiplier}× • +${formatBRL(reward)}`
           : `+${formatBRL(reward)}`
       );
       playSound("heal");
@@ -5344,6 +6256,9 @@
 
     function prepareContainmentOverlay() {
       clearEmergencyTimers();
+      game.containmentPatient = null;
+      game.containmentCanSkip = false;
+      game.containmentResolved = false;
 
       ui.containmentOverlay.className = "containment-overlay show";
       ui.containmentKicker.textContent = "EMERGÊNCIA";
@@ -5367,6 +6282,10 @@
         handleFalseAlarm(patient);
         return;
       }
+
+      game.containmentPatient = patient;
+      game.containmentCanSkip = true;
+      game.containmentResolved = false;
 
       addLog(
         "SISTEMA: Equipe de Contenção Veterinária acionada. Chegada estimada em 6 segundos."
@@ -5393,6 +6312,10 @@
     }
 
     function handleFalseAlarm(patient) {
+      game.containmentPatient = null;
+      game.containmentCanSkip = false;
+      game.containmentResolved = false;
+
       const reputationLoss = 2;
       game.reputation = Math.max(0, game.reputation - reputationLoss);
 
@@ -5416,10 +6339,19 @@
       }, 1800);
     }
 
-    function completeContainment(patient) {
+    function completeContainment(patient, skipped = false) {
+      if (game.containmentResolved) return;
+
+      game.containmentResolved = true;
       clearEmergencyTimers();
 
-      const reward = applyClassMoneyBonus(100);
+      // Uma anomalia corretamente barrada rende 3× o valor que um
+      // paciente normal renderia neste mesmo turno.
+      const normalPatientBaseReward = 34 + game.night * 3;
+      const normalPatientReward = Math.floor(
+        normalPatientBaseReward * getTreatmentMultiplier()
+      );
+      const reward = normalPatientReward * 3;
       const xp = 18;
 
       game.money += reward;
@@ -5430,25 +6362,48 @@
       ui.containmentKicker.textContent = "ÁREA SEGURA";
       ui.containmentTitle.textContent = "Anomalia contida com sucesso";
       ui.containmentMessage.textContent =
-        `${patient.name} foi removido da entrada pela equipe especializada. Nenhuma violência é exibida.`;
+        `${patient.name} foi retirado da entrada pela equipe especializada.`;
       ui.containmentCountdown.textContent = "✓";
-      ui.containmentStatus.textContent = `Recompensa: +${formatBRL(reward)} e +${xp} XP`;
+      ui.containmentStatus.textContent =
+        `Recompensa 3×: +${formatBRL(reward)} e +${xp} XP`;
 
       addLog(
-        `CONTENÇÃO: anomalia removida com segurança. +${formatBRL(reward)} e +${xp} XP.`
+        `CONTENÇÃO: anomalia barrada corretamente. ` +
+        `Recompensa equivalente a 3× um paciente normal: +${formatBRL(reward)} e +${xp} XP.` +
+        (skipped ? " Animação pulada pelo jogador." : "")
       );
-      showFloating(`+${formatBRL(reward)}`);
+      showFloating(`3× • +${formatBRL(reward)}`);
       playSound("fanfare");
       updateUI();
 
       game.containmentTimeout = window.setTimeout(() => {
         finishContainmentSequence();
-      }, 2100);
+      }, skipped ? 450 : 2100);
+    }
+
+    function skipContainmentAnimation() {
+      if (
+        !game.emergencyActive ||
+        !game.containmentCanSkip ||
+        !game.containmentPatient
+      ) {
+        return;
+      }
+
+      if (!game.containmentResolved) {
+        completeContainment(game.containmentPatient, true);
+        return;
+      }
+
+      finishContainmentSequence();
     }
 
     function finishContainmentSequence() {
       clearEmergencyTimers();
       game.emergencyActive = false;
+      game.containmentPatient = null;
+      game.containmentCanSkip = false;
+      game.containmentResolved = false;
       ui.containmentOverlay.className = "containment-overlay";
       finishRecord();
     }
@@ -5456,14 +6411,19 @@
     function triggerSecurityFailure(patient) {
       clearEmergencyTimers();
       game.emergencyActive = false;
+      game.containmentPatient = null;
+      game.containmentCanSkip = false;
+      game.containmentResolved = false;
+      const maxAnomalyEntries = getMaxAnomalyEntries();
+
       game.anomalyEntries = Math.min(
-        MAX_ANOMALY_ENTRIES,
+        maxAnomalyEntries,
         game.anomalyEntries + 1
       );
       game.hospitalDamage = game.anomalyEntries * 10;
 
       addLog(
-        `ALERTA DE SEGURANÇA: ${patient.name} era uma anomalia. Contagem: ${game.anomalyEntries}/${MAX_ANOMALY_ENTRIES}.`
+        `ALERTA DE SEGURANÇA: ${patient.name} era uma anomalia. Contagem: ${game.anomalyEntries}/${maxAnomalyEntries}.`
       );
       playSound("error");
       showFloating(
@@ -5476,19 +6436,29 @@
       game.examined = false;
       game.isProcessingDecision = true;
 
-      if (game.anomalyEntries >= MAX_ANOMALY_ENTRIES) {
+      if (game.anomalyEntries >= maxAnomalyEntries) {
         addLog(
-          "LIMITE ATINGIDO: dez anomalias entraram. O hospital foi fechado para inspeção."
+          `LIMITE ATINGIDO: ${maxAnomalyEntries} anomalias entraram. O hospital foi fechado para inspeção.`
         );
+        if (ui.securityFailureText) {
+          ui.securityFailureText.textContent =
+            `A ${maxAnomalyEntries}ª anomalia entrou na área clínica. O hospital foi fechado para uma inspeção completa.`;
+        }
         ui.securityFailureModal.classList.add("show");
         updateUI();
         saveGame();
         return;
       }
 
-      const remaining = MAX_ANOMALY_ENTRIES - game.anomalyEntries;
+      const remaining = maxAnomalyEntries - game.anomalyEntries;
       ui.securityWarningText.textContent =
-        `A equipe isolou a área sem ferimentos. Esta foi a anomalia ${game.anomalyEntries} de ${MAX_ANOMALY_ENTRIES}. Restam ${remaining} falhas permitidas.`;
+        `A equipe isolou a área sem ferimentos. Esta foi a anomalia ${game.anomalyEntries} de ${maxAnomalyEntries}. Restam ${remaining} falhas permitidas.`;
+      if (ui.securityLimitNote) {
+        ui.securityLimitNote.textContent =
+          game.selectedClass === "badBoy"
+            ? "A classe BAD & BOY permite 3 entradas adicionais: o limite desta partida é 13."
+            : `O jogo termina quando ${maxAnomalyEntries} anomalias entrarem.`;
+      }
       ui.securityWarningModal.classList.add("show");
       updateUI();
       saveGame();
@@ -5529,15 +6499,16 @@
 
     function finishNight() {
       const nightBonus = applyClassMoneyBonus(100);
+      const petCoinsPerTurn = getPetCoinsPerTurn();
       const milestonePetCoins =
         game.night % 10 === 0 ? PET_COINS_EVERY_10_TURNS : 0;
-      const totalPetCoinsEarned = PET_COINS_PER_TURN + milestonePetCoins;
+      const totalPetCoinsEarned = petCoinsPerTurn + milestonePetCoins;
 
       game.money += nightBonus;
       game.petCoins += totalPetCoinsEarned;
 
       addLog(
-        `TURNO CONCLUÍDO: bônus de ${formatBRL(nightBonus)} e +${PET_COINS_PER_TURN} Pet Moedas.` +
+        `TURNO CONCLUÍDO: bônus de ${formatBRL(nightBonus)} e +${petCoinsPerTurn} Pet Moedas.` +
         (milestonePetCoins > 0
           ? ` MARCO DE 10 TURNOS: +${milestonePetCoins} Pet Moedas extras!`
           : "")
@@ -5672,6 +6643,72 @@
 
 
 
+    function buyAntiAnomaly() {
+      if (isAntiAnomalyActive() || isAntiAnomalyScheduled()) {
+        addLog("LOJA: o Ante Anomalia já está ativo ou agendado.");
+        playSound("error");
+        return;
+      }
+
+      if (game.money < game.antiAnomalyCost) {
+        addLog("LOJA: dinheiro insuficiente para comprar o Ante Anomalia.");
+        playSound("error");
+        return;
+      }
+
+      const paid = game.antiAnomalyCost;
+      const firstProtectedTurn = game.night + 1;
+      const lastProtectedTurn =
+        firstProtectedTurn + ANTI_ANOMALY_DURATION_TURNS - 1;
+
+      game.money -= paid;
+      game.antiAnomalyPurchases += 1;
+      game.antiAnomalyActiveFromTurn = firstProtectedTurn;
+      game.antiAnomalyActiveThroughTurn = lastProtectedTurn;
+      game.antiAnomalyCost *= ANTI_ANOMALY_COST_MULTIPLIER;
+
+      addLog(
+        `ITEM: Ante Anomalia comprado por ${formatBRL(paid)}. ` +
+        `Não haverá anomalias nos turnos ${firstProtectedTurn} e ${lastProtectedTurn}.`
+      );
+      showFloating(`🛡️ Proteção nos turnos ${firstProtectedTurn}–${lastProtectedTurn}`);
+      playSound("fanfare");
+      updateUI();
+      saveGame();
+    }
+
+    function buySuperPill() {
+      if (isSuperPillActive()) {
+        addLog("LOJA: a Super Pílula já está ativa.");
+        playSound("error");
+        return;
+      }
+
+      if (game.money < game.superPillCost) {
+        addLog("LOJA: dinheiro insuficiente para comprar a Super Pílula.");
+        playSound("error");
+        return;
+      }
+
+      const paid = game.superPillCost;
+      game.money -= paid;
+      game.superPillPurchases += 1;
+      game.superPillActiveThroughTurn =
+        game.night + SUPER_PILL_DURATION_TURNS - 1;
+      game.superPillCost *= SUPER_PILL_COST_MULTIPLIER;
+
+      addLog(
+        `ITEM: Super Pílula ativada do Turno ${game.night} ao ` +
+        `Turno ${game.superPillActiveThroughTurn}. Pacientes normais rendem 6× mais dinheiro.`
+      );
+      showFloating(
+        `💊 Super Pílula 6× até o Turno ${game.superPillActiveThroughTurn}`
+      );
+      playSound("fanfare");
+      updateUI();
+      saveGame();
+    }
+
     function buyGreatAssistant() {
       if (game.money < game.greatAssistantCost) {
         addLog("LOJA: dinheiro insuficiente para contratar o Ótimo Assistente.");
@@ -5770,6 +6807,12 @@
     }
 
     function buyPill() {
+      if (isSuperPillActive()) {
+        addLog("LOJA: a Super Pílula já está ativa e substitui a pílula comum.");
+        playSound("error");
+        return;
+      }
+
       if (isPillActive()) {
         addLog("LOJA: a Pílula já está ativa neste turno.");
         playSound("error");
@@ -6028,7 +7071,14 @@
 
       ui.moneyDisplay.textContent = formatBRL(game.money);
       ui.reputationDisplay.textContent = game.reputation;
-      ui.damageDisplay.textContent = `${game.anomalyEntries}/${MAX_ANOMALY_ENTRIES}`;
+      const maxAnomalyEntries = getMaxAnomalyEntries();
+      ui.damageDisplay.textContent = `${game.anomalyEntries}/${maxAnomalyEntries}`;
+      if (ui.securityLimitNote) {
+        ui.securityLimitNote.textContent =
+          game.selectedClass === "badBoy"
+            ? "A classe BAD & BOY permite 3 entradas adicionais: o limite desta partida é 13."
+            : `O jogo termina quando ${maxAnomalyEntries} anomalias entrarem.`;
+      }
 
       ui.levelDisplay.textContent = game.level;
       ui.xpDisplay.textContent = game.xp;
@@ -6141,6 +7191,70 @@
         );
       }
 
+      const antiAnomalyActive = isAntiAnomalyActive();
+      const antiAnomalyScheduled = isAntiAnomalyScheduled();
+
+      if (ui.antiAnomalyCostDisplay) {
+        ui.antiAnomalyCostDisplay.textContent =
+          formatBRL(game.antiAnomalyCost);
+      }
+      if (ui.antiAnomalyPurchasesDisplay) {
+        ui.antiAnomalyPurchasesDisplay.textContent =
+          game.antiAnomalyPurchases;
+      }
+      if (ui.antiAnomalyStatusDisplay) {
+        ui.antiAnomalyStatusDisplay.textContent = antiAnomalyActive
+          ? `Ativo até o Turno ${game.antiAnomalyActiveThroughTurn}`
+          : antiAnomalyScheduled
+            ? `Agendado: turnos ${game.antiAnomalyActiveFromTurn}–${game.antiAnomalyActiveThroughTurn}`
+            : "Inativo";
+      }
+      if (ui.buyAntiAnomaly) {
+        const antiUnavailable = antiAnomalyActive || antiAnomalyScheduled;
+        ui.buyAntiAnomaly.disabled =
+          antiUnavailable || game.money < game.antiAnomalyCost;
+        ui.buyAntiAnomaly.innerHTML = antiAnomalyActive
+          ? `Ativo até o Turno ${game.antiAnomalyActiveThroughTurn}`
+          : antiAnomalyScheduled
+            ? `Agendado para os turnos ${game.antiAnomalyActiveFromTurn}–${game.antiAnomalyActiveThroughTurn}`
+            : `Comprar por <span id="antiAnomalyCostDisplay">${formatBRL(game.antiAnomalyCost)}</span>`;
+      }
+      if (ui.antiAnomalyCard) {
+        ui.antiAnomalyCard.classList.toggle(
+          "active-special-item",
+          antiAnomalyActive || antiAnomalyScheduled
+        );
+      }
+
+      const superPillActive = isSuperPillActive();
+
+      if (ui.superPillCostDisplay) {
+        ui.superPillCostDisplay.textContent =
+          formatBRL(game.superPillCost);
+      }
+      if (ui.superPillPurchasesDisplay) {
+        ui.superPillPurchasesDisplay.textContent =
+          game.superPillPurchases;
+      }
+      if (ui.superPillStatusDisplay) {
+        ui.superPillStatusDisplay.textContent = superPillActive
+          ? `6× ativo até o Turno ${game.superPillActiveThroughTurn}`
+          : "Inativa";
+      }
+      if (ui.buySuperPill) {
+        ui.buySuperPill.disabled =
+          superPillActive || game.money < game.superPillCost;
+        ui.buySuperPill.innerHTML = superPillActive
+          ? `6× ativo até o Turno ${game.superPillActiveThroughTurn}`
+          : `Comprar por <span id="superPillCostDisplay">${formatBRL(game.superPillCost)}</span>`;
+      }
+      if (ui.superPillCard) {
+        ui.superPillCard.classList.toggle(
+          "active-special-item",
+          superPillActive
+        );
+      }
+
       const duplicatorActive = isDuplicatorActive();
       const duplicatorMaxed = game.duplicatorUses >= DUPLICATOR_MAX_USES;
 
@@ -6172,6 +7286,7 @@
       }
 
       const pillActive = isPillActive();
+      const pillBlockedBySuper = isSuperPillActive();
 
       if (ui.pillCostDisplay) {
         ui.pillCostDisplay.textContent = formatBRL(game.pillCost);
@@ -6185,10 +7300,13 @@
           : "Inativa";
       }
       if (ui.buyPill) {
-        ui.buyPill.disabled = pillActive || game.money < game.pillCost;
-        ui.buyPill.innerHTML = pillActive
-          ? "Pílula ativa neste turno"
-          : `Comprar por <span id="pillCostDisplay">${formatBRL(game.pillCost)}</span>`;
+        ui.buyPill.disabled =
+          pillActive || pillBlockedBySuper || game.money < game.pillCost;
+        ui.buyPill.innerHTML = pillBlockedBySuper
+          ? "Super Pílula ativa"
+          : pillActive
+            ? "Pílula ativa neste turno"
+            : `Comprar por <span id="pillCostDisplay">${formatBRL(game.pillCost)}</span>`;
       }
       if (ui.pillCard) {
         ui.pillCard.classList.toggle("active-special-item", pillActive);
@@ -6344,10 +7462,20 @@
       game.greatAssistantCost = GREAT_ASSISTANT_START_COST;
       game.helperLevel = 0;
       game.helperCost = HELPER_START_COST;
+      game.antiAnomalyCost = ANTI_ANOMALY_START_COST;
+      game.antiAnomalyPurchases = 0;
+      game.antiAnomalyActiveFromTurn = 0;
+      game.antiAnomalyActiveThroughTurn = 0;
+      game.superPillCost = SUPER_PILL_START_COST;
+      game.superPillPurchases = 0;
+      game.superPillActiveThroughTurn = 0;
       game.currentPatient = null;
       game.examined = false;
       game.isProcessingDecision = false;
       game.emergencyActive = false;
+      game.containmentPatient = null;
+      game.containmentCanSkip = false;
+      game.containmentResolved = false;
       game.log = [];
 
       clearEmergencyTimers();
@@ -6411,6 +7539,11 @@
         blockEntry();
       });
 
+      ui.containmentOverlay?.addEventListener("pointerdown", (event) => {
+        event.preventDefault();
+        skipContainmentAnimation();
+      });
+
       ui.continueAfterWarningButton?.addEventListener("click", () => {
         continueAfterAnomalyEntry();
       });
@@ -6459,6 +7592,16 @@
       ui.buyHelper?.addEventListener("click", () => {
         ensureAudioContext();
         buyHelper();
+      });
+
+      ui.buyAntiAnomaly?.addEventListener("click", () => {
+        ensureAudioContext();
+        buyAntiAnomaly();
+      });
+
+      ui.buySuperPill?.addEventListener("click", () => {
+        ensureAudioContext();
+        buySuperPill();
       });
 
       ui.soundButton.addEventListener("click", toggleSound);
